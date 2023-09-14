@@ -1,0 +1,35 @@
+{% extends 'account/itembase.html' %}
+{% load static %}
+{% block content %}
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Item Name</th>
+            <th>Item Code</th>
+            <th>Batch Enabled</th>
+            <th>Base UOM</th>
+            <th>Principal Company</th>
+            <th>Action</th>
+
+
+        </tr>
+
+
+    </thead>
+    <tbody>
+    {% include 'account/partial_item_list.html' %}
+    </tbody>
+
+
+</table>
+<div class="modal fade" id="modal-book">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

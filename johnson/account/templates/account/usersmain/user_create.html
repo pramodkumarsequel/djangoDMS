@@ -1,0 +1,66 @@
+{% extends 'reportsapp/base1.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
+<!--Header start-->
+{% block header-left %}
+<div class="header-left">
+  <div class="dashboard_bar">Add User</div>
+</div>
+{% endblock header-left %}
+<!-- Header End-->
+
+<!--content start -->
+{% block content-body %}
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row justify-content-center h-100 align-items-center">
+      <div class="col-xl-12 col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">New User Form</h4>
+          </div>
+          <div class="card-body">
+            <div class="basic-form">
+               <form method="post"  autocomplete="off" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                     {% include 'account/usersmain/user_form.html' %}    
+                  <button class="btn btn-secondary mt-4 mb-5" type="submit">Save</button>
+                 <a class="btn btn-primary mt-4 mb-5" href="/user-list/">Cancel</a>
+               </form>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content-body %}
+<!-- content end -->
+{% block vendorjs %}
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#imagePreview").css(
+          "background-image",
+          "url(" + e.target.result + ")"
+        );
+        $("#imagePreview").hide();
+        $("#imagePreview").fadeIn(650);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#id_avatar").change(function () {
+    readURL(this);
+  });
+</script>
+
+<script>
+  $(".multi-select").select2({
+    placeholder: "Select the Role",
+  });
+</script>
+
+{% endblock vendorjs %}

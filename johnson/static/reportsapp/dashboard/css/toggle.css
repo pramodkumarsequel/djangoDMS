@@ -1,0 +1,24 @@
+.form-switch .form-check-input {
+        width: 3em;
+        margin-left: -2.5em;
+       
+  
+    }
+
+.form-check-input:checked {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }    
+
+
+.modal-header {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        background-color: #101fffa2;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+        border-bottom: 1px solid #EEEEEE;
+        border-top-left-radius: calc(0.3rem - 1px);
+        border-top-right-radius: calc(0.3rem - 1px);
+    }    

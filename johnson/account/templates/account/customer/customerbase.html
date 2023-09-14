@@ -1,0 +1,138 @@
+{% extends 'account/base1.html' %}
+{% load static %}
+<div class="page-wrapper">
+    {% block content %}
+    <div class="page-header" style="margin:20px;">
+      <div class="page-title">
+          <h4>Customer List</h4>
+          <h6>Manage your Customers</h6>
+      </div>
+      <div class="page-btn">
+          <a class="btn btn-added" href="{% url 'create_customer' %}"><img alt="img" src="{% static 'account/images/plus.svg' %}">Add Customer</a>
+      </div>
+  </div>
+  
+  <div class="card" style="margin:20px;">
+      <div class="card-body">
+          <div class="table-top">
+              <div class="search-set">
+                  <div class="search-path">
+                      <a class="btn btn-filter" id="filter_search">
+                          <img alt="img" src="{% static 'account/images/filter.svg' %}">
+                          <span><img alt="img" src="{% static 'account/images/closes.svg' %}"></span>
+                      </a>
+                  </div>
+                  <div class="search-input">
+                      <a class="btn btn-searchset"><img alt="img" src="{% static 'account/images/search-white.svg' %}"></a>
+                  </div>
+              </div>
+              <div class="wordset">
+                  <ul>
+                      <li>
+                          <a data-bs-placement="top" data-bs-toggle="tooltip" title="pdf"><img
+                                  alt="img" src="{% static 'account/images/pdf.svg' %}"></a>
+                      </li>
+                      <li>
+                          <a data-bs-placement="top" data-bs-toggle="tooltip" title="excel"><img
+                                  alt="img" src="{% static 'account/images/excel.svg' %}"></a>
+                      </li>
+                      <li>
+                          <a data-bs-placement="top" data-bs-toggle="tooltip" title="print"><img
+                                  alt="img" src="{% static 'account/images/printer.svg' %}"></a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+  
+          <div class="card" id="filter_inputs">
+              <div class="card-body pb-0">
+                  <div class="row">
+                      <div class="col-lg-2 col-sm-6 col-12">
+                          <div class="form-group">
+                              <input placeholder="Enter Customer Code" type="text">
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-sm-6 col-12">
+                          <div class="form-group">
+                              <input placeholder="Enter Customer Name" type="text">
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-sm-6 col-12">
+                          <div class="form-group">
+                              <input placeholder="Enter Phone Number" type="text">
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-sm-6 col-12">
+                          <div class="form-group">
+                              <input placeholder="Enter Email" type="text">
+                          </div>
+                      </div>
+                      <div class="col-lg-1 col-sm-6 col-12  ms-auto">
+                          <div class="form-group">
+                              <a class="btn btn-filters ms-auto"><img alt="img" src="{% static 'account/images/search-white.svg' %}"></a>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="table-responsive">
+                <table class="table  datanew" id="example">
+                <thead>
+                <tr>
+                <th>
+                <label class="checkboxs">
+                <input type="checkbox" id="select-all">
+                <span class="checkmarks"></span>
+                </label>
+                </th>
+                <th>Customer Name</th>
+                <th>code</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>email</th>
+                <th>Country</th>
+                 <th>Action</th>
+                </tr>
+                </thead>  
+                <tbody>
+                  {%for customer in customers %}
+                  <tr>
+                     <td>{{forloop.counter}}</td>
+                      <td>{{customer.Customer_Code}}</td>
+                      <td>{{customer.Customer_Name}}</td>
+                      <td>{{customer.Customer_Group}}</td>
+                      <td>{{customer.state}}</td>
+                      <td>{{customer.city}}</td>
+                      <td>{{customer.Email_ID}}</td>
+                      <td>
+                          <a class="me-3" href="edituser.html">
+                              <img alt="img" src="{% static 'account/images/edit.svg' %}">
+                          </a>
+                          <a class="me-3 confirm-text" href="javascript:void(0);">
+                              <img alt="img" src="{% static 'account/images/delete.svg' %}">
+                          </a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+
+              </tbody>
+              </table>
+              </div>   
+
+    {% endblock content%} 
+
+</div>   
+
+
+
+
+<style>
+  .page-header {
+    margin-bottom: 25px;
+    margin: 20px;
+}
+.card {
+  padding: 10px;
+  margin: 20px;
+}
+</style>  

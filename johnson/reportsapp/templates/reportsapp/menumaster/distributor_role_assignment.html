@@ -1,0 +1,141 @@
+{% load static %}
+<div class="card col-md-4" style="float:right; padding-top:10px;">
+    <div id="checkboxes">
+        <div class="card-body" style="border-right:groove; border-left:groove; border-bottom:ridge; border-color:aquamarine;">
+            <div class="card-title">
+                <h4 style="background-color:#1BBC9B">
+                    <label>
+                        <input type="checkbox" class="checkallDIS" name="checkAllDIS" onClick="DistributortoggleCheckbox(this.checked)">
+                        <span style="padding:5px;">Distributor</span>
+                    </label>
+                    <input type="search" id="search" class="form-control" placeholder="Type here to search..."
+                        aria-label="Search" />
+                </h4>
+            </div>
+           <div class="main_responsive1">  
+                <table class="table is-fullwidth is-bordered is-hoverable is-striped" id="Table">
+                    <tbody>
+                        <thead>
+                            {% for dis in distributors %} 
+                            <tr data-pk="{{ dis.Distributor_Name }}">
+                                <td style="border-color:None;"><input class="checkallDIS" name="checkAllDIS" type="checkbox" value="{{dis.Distributor_Name}}" id="{{dis.Distributor_Name}}"/>
+                                </td>
+                                <td>{{dis.Distributor_Name}}</td>
+                            </tr>
+                            {% endfor %}
+                        </thead>   
+                    </tbody>    
+                </table> 
+            </div>        
+        </div>
+    </div>     
+    
+</div>
+<style>
+    .card-body{
+        border-bottom: ridge;
+        border-left: groove;
+        border-right: groove;
+        border-color: green;
+    }   
+    h4{
+        background-color:#1BBC9B;
+        padding-top: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        border-radius:2%;
+    } 
+    .main_responsive1 {
+        width: 100%;
+        height: 390px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+      }
+      .distributor-checkboxes {
+        border-bottom: ridge;
+        border-left: groove;
+        border-right: groove;
+        border-color: green;
+        width: 30%;
+        height: 390px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+
+      }
+      .zone-checkboxes {
+        border-bottom: ridge;
+        border-left: groove;
+        border-right: groove;
+        border-color: green;
+        width: 30%;
+        height: 390px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+
+      }
+      .doctype-checkboxes {
+        border-bottom: ridge;
+        border-left: groove;
+        border-right: groove;
+        border-color: green;
+        width: 40%;
+        height: 390px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+
+      }
+</style> 
+<script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>   
+<script>
+    $(document).ready(function(){
+      $("#search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#Table tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });  
+</script> 
+<script>
+    function DistributortoggleCheckbox(isChecked) {
+        if(isChecked) {
+            $('input[name="checkAllDIS"]').each(function() {
+                this.checked = true;        
+            });
+        } else {
+            $('input[name="checkAllDIS"]').each(function() {
+                this.checked = false;
+            });
+        }
+        
+    }    
+</script>
+<script>
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $(".checkallDIS").click(function () {
+        var pk = $(this).closest('tr').attr("data-pk");
+        var myCheckboxesDIS = new Array();
+        $('.checkallDIS:checked').each(function(){
+            myCheckboxesDIS.push($(this).val());
+        })
+        $("btn1").click(function(e) {
+            e.preventDefault();
+        $.ajax({
+            type: "POST",
+            headers:{
+                "X-CSRFToken": csrftoken
+            },
+            url: "{% url 'role_assignment' %}",
+            data: {
+               myCheckboxesDIS: myCheckboxesDIS,
+
+             },
+           dataType: "json",
+            success: function (response) {
+            },
+        });
+    });
+    });
+    
+</script> 

@@ -1,0 +1,9 @@
+<div class="mb-3">
+      <label class="form-label"> Additional Role </label>
+      <select class="multi-select form-control" id="id_groups" multiple name="groups[]" name="groups">
+         {% for role in items %}
+         <option value="{{role.id}}">{{role.Item_Name}}</option>
+         {% endfor %}
+      </select>
+      <div class="text-danger w-100 d-block mt-1"></div>
+</div>

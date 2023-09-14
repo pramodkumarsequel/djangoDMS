@@ -1,0 +1,31 @@
+{% load static %}
+{% block content %}
+<table id="example" class="display table-striped" style="width:100%">
+   <thead>
+      <tr>
+        <th>Item Code</th>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Serial No</th>
+        <th>Batch</th>
+        <th>Discount</th>
+        <th>Total Amount</th>
+        <th>Reference No</th>
+        <th>Edit/Delete</th>
+
+      </tr>
+
+   </thead>
+    {% include 'account/sales/partial_saledetail_list.html' %}
+
+ </table>
+
+<div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+</div>
+
+{% endblock %}

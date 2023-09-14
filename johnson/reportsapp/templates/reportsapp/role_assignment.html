@@ -1,0 +1,423 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% block title %}
+<title>::ROLE ASSIGNMENT::</title>
+{% endblock %}
+{% block page-inner %} 
+{% load crispy_forms_tags %}
+{%block extracss %}
+{% endblock extracss %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header" style="color:white;">ROLE ASSIGNMENT</h3>
+    </div>
+<form action="#" id="example" method="post"data-itm-url="{% url 'load_ajax_role' %}" data-user-url="{% url 'load_ajax_user' %}">{% csrf_token %}       
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panle-white">
+                    <div class="panel panel-heading clearfix" style="padding:0px;">
+                        <div class="msg" style="color:red; font-weight:bold; margin-left:27rem;"></div> 
+                              {{message}}
+                        <div class="panel-body col-md-12 col-lg-12">
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <div class="form-group" id="div_id_ROLE">
+                                            <label class=" requiredField" for="id_ROLE">
+                                                SELECT ROLE<span class="asteriskField">*</span>
+                                            </label>
+                                            <div>
+                                                <select class="select form-control" id="id_ROLE" name="ROLE" required="" >
+                                                    <option selected="" value="">-----SELECT----</option>
+                                                  {% for role in roles %}
+                                                    <option value="{{role.id}}">{{role.name}}</option>
+                                                  {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group col-md-3">
+                                        <div id="div_id_User" class="form-group">
+                                            <label for="id_User" class="requiredField">
+                                              SELECT USER<span class="asteriskField">*</span>
+                                            </label>
+                                            <div>
+                                              <select name="User" class="select form-control" required="" id="id_User">
+                                                <option value="" selected="">-----SELECT----</option>
+                                                {% for us in users %}
+                                                <option value="{{us.id}}">{{us.username}} - ({{us.role}})</option>
+                                                {% endfor %}
+                                              </select>
+                                            </div>
+                                          </div>
+                                    </div> 
+                                    <div class="form-group col-md-3">
+                                        <div id="div_id_doc_type" class="form-group">
+                                            <label for="id_doc_type" class="requiredField">
+                                              DOCUMENT TYPE<span class="asteriskField">*</span>
+                                            </label>
+                                            <div>
+                                              <select name="doc_type" class="select form-control" id="id_doc_type">
+                                                <option value="" selected="">----SELECT----</option>
+                                                
+                                                <option value="New">New</option>
+                                          
+                                              </select>
+                                            </div>
+                                          </div>
+                                    </div>    
+                                        <div class="form-group col-md-3"> 
+                                            <button type="button" class="btn btn-primary btn-sm" name="search" value="button"
+                                                        style="margin-top: 2rem;" data-url="#">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                
+                                            <button type="submit" class="btn btn-danger btn-sm" name="query"
+                                                    style="margin-top: 2rem; float:right;" data-url="#">
+                                                <span class="glyphicon glyphicon-trash text-white"></span>
+                                            </button>
+                                    
+                                            <button type="submit" class="btn btn-primary btn-sm" name="query"
+                                                    style="margin-top: 2rem; float:right;margin-right:2px;" data-url="#">
+                                                <span class="glyphicon glyphicon-export"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter"
+                                                        style="margin-top: 2rem; float:right; margin-right:2px;">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </div>
+                                        
+                                </div>      
+                        </div>
+                        
+                            <div class="card col-md-4" style="float:right; padding-top:10px;">
+                                <div id="checkboxes">
+                                    <div class="card-body">
+                                        <div class="card-title">
+                                            <h4>
+                                                <label>
+                                                    <input type="checkbox" class="checkall" name="checkAll" onClick="toggleCheckbox(this.checked)">
+                                                    <span style="padding:5px;">Document Type</span>
+                                                </label>
+                                                <input type="search" id="mysearch" class="form-control" placeholder="Type here to search..."
+                                                    aria-label="Search" />
+                                            </h4>
+                                        </div>
+                                       <div class="main_responsive">  
+                                            <table class="table is-fullwidth is-bordered is-hoverable is-striped" id="myTable">
+                                                <tbody>
+                                                    <thead>
+                                                        {{ser.documents|as_crispy_field}}
+                                                    </thead>   
+                                                </tbody>    
+                                            </table> 
+                                        </div>    
+                                            <div class="card-title" style="background-color:lightgray;padding: 15px; text-align:center;">
+                                               <div class="form-row"> 
+                                                    {{ser.iscreate|as_crispy_field}}
+                                                    {{ser.isview|as_crispy_field}}
+                                                    {{ser.isedit|as_crispy_field}}
+                                               </div>    
+                                                  
+                                                    <div class="" style="text-align:center;">             
+                                                        <input class="btn btn-primary btn btn-wide btn-dark-custom mr-3" id="submit-id-submit" name="submit" type="submit" value="Save"> 
+                                                        <input class="btn btn-inverse btn btn-wide btn-danger" id="reset-id-clear-search" name="clear-search" type="reset" value="Clear Filters">           	
+                                                    </div> 
+                                                
+                                                    
+
+                                            </div>       
+                                    </div>
+                                </div>     
+                                
+                            </div>
+                            <div class="card col-md-4" style="float:right; padding-top:10px;">
+                                <div id="checkboxes">
+                                    <div class="card-body" style="border-right:groove; border-left:groove; border-bottom:ridge; border-color:aquamarine;">
+                                        <div class="card-title">
+                                            <h4 style="background-color:#1BBC9B">
+                                                <label>
+                                                    <input type="checkbox" class="checkallZone" name="checkAllZone" onClick="ZonetoggleCheckbox(this.checked)">
+                                                    <span style="padding:5px;">Zone</span>
+                                                </label>
+                                                <input type="search" id="zoneSearch" class="form-control" placeholder="Type here to search..."
+                                                    aria-label="Search" />
+                                            </h4>
+                                        </div>
+                                       <div class="main_responsive1">  
+                                            <table class="table is-fullwidth is-bordered is-hoverable is-striped" id="zoneTable">
+                                                <tbody>
+                                                    <thead>
+                                                      {{ser.zones|as_crispy_field}}
+                                                    </thead>   
+                                                </tbody>    
+                                            </table> 
+                                        </div>        
+                                    </div>
+                                </div>     
+                                
+                            </div>
+
+                            <div class="card col-md-4" style="float:right; padding-top:10px;">
+                                <div id="checkboxes">
+                                    <div class="card-body" style="border-right:groove; border-left:groove; border-bottom:ridge; border-color:aquamarine;">
+                                        <div class="card-title">
+                                            <h4 style="background-color:#1BBC9B">
+                                                <label>
+                                                    <input type="checkbox" class="checkallDIS" name="checkAllDIS" onClick="DistributortoggleCheckbox(this.checked)">
+                                                    <span style="padding:5px;">Distributor</span>
+                                                </label>
+                                                <input type="search" id="search" class="form-control" placeholder="Type here to search..."
+                                                    aria-label="Search" />
+                                            </h4>
+                                        </div>
+                                       <div class="main_responsive1">  
+                                            <table class="table is-fullwidth is-bordered is-hoverable is-striped" id="Table">
+                                                <tbody>
+                                                    <thead>
+                                                        {{ser.distributors|as_crispy_field}}
+                                                    </thead>   
+                                                </tbody>    
+                                            </table> 
+                                        </div>        
+                                    </div>
+                                </div>     
+                                
+                            </div>                              
+                            </div> 
+                    </div>       
+                </div>   
+            </div>   
+             
+        </div>          
+    </div>
+</form>        
+</div>  
+<style>
+      h3{
+        background-color: #393997;
+        color: white;
+        padding: 10px;
+        border-bottom-style: groove;
+    }
+    .panel-body {
+        padding: 0;
+        background-color: #dfdbdb;
+        font-size: medium;
+        color: black;
+        padding-top: 5px;
+    }
+    .panel1 {
+        /* padding: 25px; */
+        border-color: #E6E8EB;
+        background-color: #dfdbdb;
+    }
+    h4{
+    background-color: #f3565d;
+    padding-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    border-radius:2%;
+}
+.card-body{
+    border-bottom: ridge;
+    border-left: groove;
+    border-right: groove;
+    border-color: lightsalmon;
+}
+.main_responsive {
+    width: 100%;
+    height: 300px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+
+.table>thead>tr>th> {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    /* border-top: 1px solid #ddd; */
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  
+}
+.modal-header {
+    padding: 10px;
+    border: none;
+    background-color: #393997;
+}
+.table-responsive{
+    width:100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+}
+
+.distributor-checkboxes div {
+    min-width : 195px;
+}
+.zone-checkboxes div {
+    min-width : 130px;
+}
+.doctype-checkboxes div {
+    min-width : 150px;
+}
+.main_responsive1 {
+    width: 100%;
+    height: 390px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+
+
+
+
+ 
+    
+</style>
+{% endblock %}
+{% block extrajs %}
+<script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+      $('#example').dataTable();
+  
+    });
+</script> 
+<script>   
+    $(document).ready(function (){
+      $('#id_ROLE').select2();
+      $('#id_User').select2();
+      $('#id_doc_type').select2();
+    })  
+  </script>
+<script>
+        $(document).ready(function(){
+          $("#mysearch").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });  
+</script> 
+<script>
+    function toggleCheckbox(isChecked) {
+        if(isChecked) {
+            $('input[name="checkAll"]').each(function() {
+                this.checked = true;        
+            });
+        } else {
+            $('input[name="checkAll"]').each(function() {
+                this.checked = false;
+            });
+        }
+        
+    }    
+</script>   
+<script>
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $(".checkall").click(function () {
+        var pk = $(this).closest('tr').attr("data-pk");
+        var myCheckboxes = new Array();
+        $('.checkall:checked').each(function(){
+            myCheckboxes.push($(this).val());
+        })
+    $("#button1").click(function(e) {
+        console.log("ok");
+        myCheckboxes
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            headers:{
+                "X-CSRFToken": csrftoken
+            },
+            url: "{% url 'role_assignment' %}",
+            data: {
+               myCheckboxes: myCheckboxes,
+
+             },
+           dataType: "json",
+            success: function (response) {
+            },
+        });
+    });
+});
+    
+</script> 
+<script>
+    $("#id_ROLE").change(function () {
+      var url = $("#example").attr("data-itm-url");  // get the url of the `
+      var roleid = $(this).val();      
+      $.ajax({                  // initialize an AJAX request
+        url: url,                    // set the url of the request
+        data: {
+          'roleid': roleid, 
+        },
+        success: function (data) {   // `data` is the return of the  view function
+            $('.msg').html('Please Select Valid User');
+            /* $("#id_User").html(data); */
+            
+        }
+      });
+
+    });
+
+</script> 
+<script>
+    $("#id_User").change(function () {
+        var url = $("#example").attr("data-user-url");  // get the url of the `
+        var userrole = $(this).val();
+        var roleid = $('#id_ROLE').val();
+            console.log(roleid);
+        $.ajax({                  // initialize an AJAX request
+          url: url,                    // set the url of the request
+          data: {
+            'userrole': userrole ,
+            'roleid': roleid,
+          },
+          success: function (data) {   // `data` is the return of the  view function
+              $("#id_doc_type").html(data);
+              
+          }
+        });
+  
+      });    
+</script>
+            
+<script type="text/javascript">
+
+    $(document).ready(function () {
+     
+    window.setTimeout(function() {
+        $(".msg").fadeTo(1000, 0).slideUp(1000, function(){
+            $(this).remove(); 
+        });
+    }, 5000);
+     
+    });
+</script>
+<script>
+    $("#submit1").click(function () {
+        {
+            var selected = $('.select :selected');
+          selected.each(function (a) {
+                $('#example').append('<tr><td>'+$(this).val()+'</td></tr>');
+                console.log($(this).val());
+            // $('#table1').append('<tr><td>'+$(this).text()+'</td></tr>');
+            //if you need ah text like days do with that
+            });
+        }
+    });    
+</script>    
+{% endblock %}  

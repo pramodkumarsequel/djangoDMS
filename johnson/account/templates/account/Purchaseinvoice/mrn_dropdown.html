@@ -1,0 +1,18 @@
+<div id="div_id_mrn_no" class="form-group">
+  <label for="id_mrn_no" class="requiredField">
+    MRN No<span class="asteriskField">*</span>
+  </label>
+
+  <div>
+    <select
+      name="mrn_no"
+      class="select form-control"
+      required=""
+      id="id_mrn_no">
+      <option value="" selected="">---------</option> 
+        {% for mr in mrn %}
+        <option value="{{mr.id}}">{{mr.recipt_no}}</option>      
+        {% endfor %}
+    </select>
+  </div>
+</div>

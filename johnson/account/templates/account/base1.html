@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <!-- Mirrored from dreamspos.dreamguystech.com/html/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jan 2023 10:26:31 GMT -->
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+    <meta name="description" content="POS - Bootstrap Admin Template" />
+    <meta
+      name="keywords"
+      content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern,  html5, responsive"
+    />
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>BPM2.0</title>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://dreamspos.dreamguystech.com/html/template/assets/img/favicon.png"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'reportsapp/johnsonNew/css/bootstrap.min.css' %}"
+    />
+    <link
+    rel="stylesheet"
+    href="{% static 'reportsapp/johnsonNew/css/animate.css' %}"
+  />
+
+  <link
+  rel="stylesheet"
+  href="{% static 'reportsapp/johnsonNew/css/select2.min.css' %}"
+/>
+
+    <link
+      rel="stylesheet"
+      href="https://dreamspos.dreamguystech.com/html/template/assets/css/animate.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'reportsapp/johnsonNew/css/dataTables.bootstrap4.min.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'reportsapp/johnsonNew/css/fontawesome.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'reportsapp/johnsonNew/css/all.min.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'reportsapp/johnsonNew/css/style.css' %}"
+    />  
+<style>
+  .sidebar .sidebar-menu > ul > li > a img {
+    width: 25px;
+    color: #637381;
+    padding-right: 2px;
+}  
+.sidebar .sidebar-menu > ul > li > a {
+  padding: 10px 15px;
+  position: relative;
+  color: #212B36;
+  font-size: medium;
+}
+</style>  
+
+  </head>
+  {% block header %}
+  {% endblock header%}
+  <body>
+    <div id="global-loader">
+      <div class="whirly-loader"></div>
+    </div>
+    <div class="main-wrapper">
+      <div class="header">
+        <div class="header-left active">
+          <a
+            href="https://dreamspos.dreamguystech.com/html/template/index.html"
+            class="logo logo-normal"
+          >
+            <img class="logo_s" src="{% static 'account/images/HONODMS.png' %}" alt="..." height="50" width="120" onClick="toggleMode()" alt=""/>
+          </a>
+          <a
+            href="https://dreamspos.dreamguystech.com/html/template/index.html"
+            class="logo logo-white"
+          >
+            <img
+              src="https://dreamspos.dreamguystech.com/html/template/assets/img/logo-white.png"
+              alt=""
+            />
+          </a>
+          <a
+            href="https://dreamspos.dreamguystech.com/html/template/index.html"
+            class="logo-small"
+          >
+            <img
+              src="https://dreamspos.dreamguystech.com/html/template/assets/img/logo-small.png"
+              alt=""
+            />
+          </a>
+          <a id="toggle_btn" href="javascript:void(0);"> </a>
+        </div>
+
+        <a id="mobile_btn" class="mobile_btn" href="#sidebar">
+          <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </a>
+
+        <ul class="nav user-menu">
+          <li class="nav-item">
+            <div class="top-nav-search">
+              <a href="javascript:void(0);" class="responsive-search">
+                <i class="fa fa-search"></i>
+              </a>
+              <form action="#">
+                <div class="searchinputs">
+                  <input type="text" placeholder="Search Here ..." />
+                  <div class="search-addon">
+                    <span
+                      ><img
+                        src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/closes.svg"
+                        alt="img"
+                    /></span>
+                  </div>
+                </div>
+                <a class="btn" id="searchdiv"
+                  ><img
+                    src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/search.svg"
+                    alt="img"
+                /></a>
+              </form>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              href="javascript:void(0);"
+              class="dropdown-toggle nav-link"
+              data-bs-toggle="dropdown"
+            >
+              <img src="{% static 'account/images/notification.svg' %}" alt="img" />
+              <span class="badge rounded-pill">4</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown has-arrow main-drop">
+            <a
+              href="javascript:void(0);"
+              class="dropdown-toggle nav-link userset"
+              data-bs-toggle="dropdown"
+            >
+              <span class="user-img"
+                ><img src="{% static 'account/images/profile-icon.png' %}" alt="" /> <span class="status online"></span
+              ></span>
+            </a>
+            <div class="dropdown-menu menu-drop-user">
+              <div class="profilename">
+                <div class="profileset">
+                  <span class="user-img"
+                    ><img src="#" alt="" /> <span class="status online"></span
+                  ></span>
+                  <div class="profilesets">
+                    <h6>#</h6>
+                    <h5>#</h5>
+                  </div>
+                </div>
+                <hr class="m-0" />
+                <a
+                  class="dropdown-item"
+                  href="https://dreamspos.dreamguystech.com/html/template/profile.html"
+                >
+                  <i class="me-2" data-feather="user"></i> My Profile</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="https://dreamspos.dreamguystech.com/html/template/generalsettings.html"
+                  ><i class="me-2" data-feather="settings"></i>Settings</a
+                >
+                <hr class="m-0" />
+                <a
+                  class="dropdown-item logout pb-0"
+                  href="{% url 'user_logout' %}"
+                  ><img
+                    src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/log-out.svg"
+                    class="me-2"
+                    alt="img"
+                  />Logout</a
+                >
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="dropdown mobile-user-menu">
+          <a
+            href="javascript:void(0);"
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            ><i class="fa fa-ellipsis-v"></i
+          ></a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a
+              class="dropdown-item"
+              href="https://dreamspos.dreamguystech.com/html/template/profile.html"
+              >My Profile</a
+            >
+            <a
+              class="dropdown-item"
+              href="https://dreamspos.dreamguystech.com/html/template/generalsettings.html"
+              >Settings</a
+            >
+            <a
+              class="dropdown-item"
+              href="https://dreamspos.dreamguystech.com/html/template/signin.html"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </div>
+
+
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+          <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+
+              {% for item in request.session.mainM  %}
+              {% if item.Is_View and request.user.role.id in item.usrole %}
+
+           <li class="submenu"  id="{{ item.MenuName }}"> 
+               {% if item.MenuName == "Home" %}
+              <a href="{{item.pagelink}}"><img src="{% static 'account/images/house.png' %}"alt="img"/>{{ item.MenuName }}</a>  
+               {% elif item.MenuName == "Dashboard" %} 
+                   <a href="{{ item.pagelink }}/" data-toggle="collapse" aria-expanded="false"><img src="{% static 'account/images/ds.png' %}"alt="img"/> {{ item.MenuName }}
+                   </a>
+               {% elif item.MenuName == "Configuration" %} 
+                   <a href="{{ item.pagelink }}/" data-toggle="collapse" aria-expanded="false"> <img src="{% static 'account/images/config.png' %}"alt="img"/>{{ item.MenuName }}
+                   </a>  
+               {% elif item.MenuName == "Master" %}
+                   <a href="{{ item.pagelink }}" data-toggle="collapse" aria-expanded="false"> <img src="{% static 'account/images/us1.png' %}"alt="img"/>{{ item.MenuName }}
+                   </a> 
+               {% elif item.MenuName == "Item" %} 
+                   <a href="{{ item.pagelink }}/" data-toggle="collapse" aria-expanded="false"> <img src="{% static 'account/images/product.png' %}"alt="img"/>{{ item.MenuName }}
+                   </a>  
+               {% elif item.MenuName == "Reports" %} 
+                   <a href="{{ item.pagelink }}/" data-toggle="collapse" aria-expanded="false"><img src="{% static 'account/images/reports.png' %}"alt="img"/>{{ item.MenuName }}
+                   </a> 
+               {% elif item.MenuName == "Document" %} 
+                   <a href="{{ item.pagelink }}/" data-toggle="collapse" aria-expanded="false"><img src="{% static 'account/images/doc1.png' %}"alt="img"/>{{ item.MenuName }}
+                   </a>  
+               {% elif item.MenuName == "Inventory" %} 
+                   <a href="{{ item.pagelink }}/" data-toggle="collapse" aria-expanded="false">{{ item.MenuName }}
+                   </a>  
+               {% elif item.MenuName == "Item Master" %} 
+                   <a href="{{ item.pagelink }}/" data-toggle="collapse" aria-expanded="false"><img src="{% static 'account/images/product.png' %}"alt="img"/>{{ item.MenuName }}
+                   </a>                       
+               {% else %}
+               <a href="{{ item.pagelink }}" data-toggle="collapse" aria-expanded="false">{{ item.MenuName }}
+               </a>      
+               {% endif %}          
+               <ul class="submenu" id="{{ item.MenuName }}">
+                  {% for  value in  request.session.submenu %}   
+                       {% if value.Pmenu == item.id and request.user.role.id in value.usrole %}    
+                          <li><a style="color:black;" href="{{ value.pagelink }}">{{ value.MenuName }}</a></li>
+                       {% endif %}      
+                   {% endfor %}   
+               </ul>
+               {% endif %}
+                {% endfor %} 
+            </ul>  
+           
+          </div>
+        </div>
+      </div>
+      <div class="page-wrapper">
+        {% block content %}
+        <div class="content">
+          <div class="row">
+            <div class="col-lg-3 col-sm-6 col-12">
+              <div class="dash-widget">
+                <div class="dash-widgetimg">
+                  <span
+                    ><img
+                      src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/dash1.svg"
+                      alt="img"
+                  /></span>
+                </div>
+                <div class="dash-widgetcontent">
+                  <h5>
+                    R<span class="counters" data-count="{{salesval}}"
+                      >&#x20b9;{{salesval}}</span
+                    >
+                  </h5>
+                  <h6>Gross Sales Value</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+              <div class="dash-widget dash1">
+                <div class="dash-widgetimg">
+                  <span
+                    ><img
+                      src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/dash2.svg"
+                      alt="img"
+                  /></span>
+                </div>
+                <div class="dash-widgetcontent">
+                  <h5>
+                    <span class="counters" data-count="{{itm_mrp}}"
+                      >&#x20b9;{{itm_mrp}}</span
+                    >
+                  </h5>
+                  <h6>Gross net sales value</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+              <div class="dash-widget dash2">
+                <div class="dash-widgetimg">
+                  <span
+                    ><img
+                      src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/dash3.svg"
+                      alt="img"
+                  /></span>
+                </div>
+                <div class="dash-widgetcontent">
+                  <h5>
+                    <span class="counters" data-count="{{customers}}"
+                      >&#x20b9;{{customers}}</span
+                    >
+                  </h5>
+                  <h6>Total Customers</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+              <div class="dash-widget dash3">
+                <div class="dash-widgetimg">
+                  <span
+                    ><img
+                      src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/dash4.svg"
+                      alt="img"
+                  /></span>
+                </div>
+                <div class="dash-widgetcontent">
+                  <h5>
+                    $<span class="counters" data-count="{{items}}"
+                      >&#x20b9;{{items}}</span
+                    >
+                  </h5>
+                  <h6>Total Items</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12 d-flex">
+              <div class="dash-count">
+                <div class="dash-counts">
+                  <h4>{{customers}}</h4>
+                  <h5>Customers</h5>
+                </div>
+                <div class="dash-imgs">
+                  <i data-feather="user"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12 d-flex">
+              <div class="dash-count das1">
+                <div class="dash-counts">
+                  <h4>10</h4>
+                  <h5>Distributors</h5>
+                </div>
+                <div class="dash-imgs">
+                  <i data-feather="user-check"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12 d-flex">
+              <div class="dash-count das2">
+                <div class="dash-counts">
+                  <h4>{{purchases}}</h4>
+                  <h5>Purchase Invoice</h5>
+                </div>
+                <div class="dash-imgs">
+                  <i data-feather="file-text"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12 d-flex">
+              <div class="dash-count das3">
+                <div class="dash-counts">
+                  <h4>{{sales}}</h4>
+                  <h5>Sales Invoice</h5>
+                </div>
+                <div class="dash-imgs">
+                  <i data-feather="file"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-7 col-sm-12 col-12 d-flex">
+              <div class="card flex-fill">
+                <div
+                  class="card-header pb-0 d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="card-title mb-0">Purchase & Sales</h5>
+                  <div class="graph-sets">
+                    <ul>
+                      <li>
+                        <span>Sales</span>
+                      </li>
+                      <li>
+                        <span>Purchase</span>
+                      </li>
+                    </ul>
+                    <div class="dropdown">
+                      <button
+                        class="btn btn-white btn-sm dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        2022
+                        <img
+                          src="https://dreamspos.dreamguystech.com/html/template/assets/img/icons/dropdown.svg"
+                          alt="img"
+                          class="ms-2"
+                        />
+                      </button>
+                      <ul
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <li>
+                          <a href="javascript:void(0);" class="dropdown-item"
+                            >2022</a
+                          >
+                        </li>
+                        <li>
+                          <a href="javascript:void(0);" class="dropdown-item"
+                            >2021</a
+                          >
+                        </li>
+                        <li>
+                          <a href="javascript:void(0);" class="dropdown-item"
+                            >2020</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div id="sales_charts"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endblock content %}
+      </div>
+    </div>
+
+    <script src="{% static 'reportsapp/johnsonNew/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>
+
+    <script src="{% static 'reportsapp/johnsonNew/js/feather.min.js' %}"></script>
+
+    <script src="{% static 'reportsapp/johnsonNew/js/jquery.slimscroll.min.js' %}"></script>
+
+    <script src="{% static 'reportsapp/johnsonNew/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'reportsapp/johnsonNew/js/dataTables.bootstrap4.min.js' %}"></script>
+
+    <script src="{% static 'reportsapp/johnsonNew/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'reportsapp/johnsonNew/js/select2.min.js' %}"></script>
+    <script src="{% static 'reportsapp/johnsonNew/js/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'reportsapp/johnsonNew/js/sweetalert2.all.min.js' %}"></script>
+
+
+    <script src="{% static 'reportsapp/johnsonNew/js/apexcharts.min.js' %}"></script>
+    <script src="{% static 'reportsapp/johnsonNew/js/chart-data.js' %}"></script>
+
+    <script src="{% static 'reportsapp/johnsonNew/js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
+    {% block extrajs %}
+    {% endblock extrajs %}
+  </body>
+</html>

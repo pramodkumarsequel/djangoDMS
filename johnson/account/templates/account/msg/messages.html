@@ -1,0 +1,26 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var j = jQuery.noConflict();
+</script>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    <li class="{{ message.tags }}">
+        <div class="alert {{message.tags}} alert-dismissible alert-alt solid fade show">
+            <div class="media">  
+                <div class="media-body">
+                    <p class="mb-0">{{message}}</p> 
+                    <script>
+                      j(document).ready(function() {
+                          j('.messages').delay(2000).fadeOut('slow');
+                      });
+                  </script>
+
+                </div>    
+            </div>     
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
+    </div>   
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}

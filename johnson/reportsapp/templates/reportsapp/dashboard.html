@@ -1,0 +1,145 @@
+{% extends 'account/base.html' %}
+{% block page-inner %}
+ <div class="page-inner">
+                    <div class="page-title">
+                        <h3 class="breadcrumb-header">Dashboard</h3>
+                    </div>
+                    <div id="main-wrapper">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-white stats-widget">
+                                    <div class="panel-body">
+                                        <div class="pull-left">
+                                            <span class="stats-number"><p>&#x20b9;{{salesval}}</p></span>
+                                            <p class="stats-info">Gross Sales Value</p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <i class="icon-arrow_upward stats-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-white stats-widget">
+                                    <div class="panel-body">
+                                        <div class="pull-left">
+                                            <span class="stats-number"><p>&#x20b9; {{itm_mrp}}</p></span>
+                                            <p class="stats-info">Gross net sales value</p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <i class="icon-arrow_upward stats-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-white stats-widget">
+                                    <div class="panel-body">
+                                        <div class="pull-left">
+                                            <span class="stats-number">{{customers}}</span>
+                                            <p class="stats-info">Total Customers</p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <i class="icon-arrow_upward stats-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-white stats-widget">
+                                    <div class="panel-body">
+                                        <div class="pull-left">
+                                            <span class="stats-number">{{items}}</span>
+                                            <p class="stats-info">Total Items</p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <i class="icon-arrow_upward stats-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Row -->
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading clearfix">
+                                        <h4 class="panel-title"></h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        {% include 'reportsapp/sale_piechart.html' %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading clearfix">
+                                        <h4 class="panel-title"></h4>
+                                    </div>
+                                    <div class="panel-body">
+
+                                            {% include 'reportsapp/piechart.html' %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Row -->
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading clearfix">
+                                        <h4 class="panel-title"></h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        {% include 'reportsapp/chart.html' %}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="panel panel-white">
+                                    <div class="panel-heading clearfix">
+                                        <h4 class="panel-title"></h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        {% include 'reportsapp/dynamicchart.html' %}
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Row -->
+                    </div>
+ </div>
+<style>
+    .breadcrumb-header {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(0,0,0,.6);
+    margin-bottom: 24px;
+    background-color: #393997;
+    color: white;
+    padding: 1rem;
+}
+.panel {
+    background-color: unset;
+    padding: 25px;
+    border-color: #E6E8EB;
+}
+.highcharts-background {
+    fill: unset;
+    fill: #2BBBAD;
+}
+
+
+.highcharts-color-0 {
+    fill: #185693;
+    stroke: #7cb5ec;
+
+}
+.highcharts-color-4 {
+    stroke: #8085e9;
+    fill: #992c2c;
+}
+</style>
+{% endblock %}

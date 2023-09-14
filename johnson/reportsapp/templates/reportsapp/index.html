@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="{% static 'kendu/styles/kendo.common.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'kendu/styles/kendo.default.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'kendu/styles/kendo.dataviz.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'kendu/styles/kendo.dataviz.default.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'kendu/styles/kendo.flat.mobile.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'kendu/styles/kendo.flat.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'kendu/styles/kendo.default.mobile.min.css' %}"/>
+
+    <script src="{% static 'kendu/js/jquery.min.js' %}"></script>
+    <script src="{% static 'kendu/js/kendo.all.min.js' %}"></script>
+    <link rel="stylesheet"  href="{% static 'kendu/styles/kendo.rtl.min.css' %}">
+    <script src="{% static 'kendu/content/shared/js/console.js' %}"></script>
+    <script src="{% static 'kendu/js/jszip.min.js' %}"></script>
+
+
+
+
+</head>
+<body>
+<script src="{% static 'account/js/products.js' %}"></script>
+    <div id="example">
+    <div id="grid">
+
+    </div>
+
+    <script>
+        $("#grid").kendoGrid({
+            toolbar: ["excel"],
+            excel: {
+                fileName: "StockExport.xlsx",
+                proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+                filterable: true
+            },
+            dataSource: {
+                type: "odata",
+                transport: {
+                    read: "#"
+                },
+                    data:products,
+                schema:{
+                    model: {
+                        fields: {
+                            UnitsInStock: { type: "number" },
+                            ProductName: { type: "string" },
+                            UnitPrice: { type: "number" },
+                            UnitsOnOrder: { type: "number" },
+                            UnitsInStock: { type: "number" }
+                        }
+                    }
+                },
+                pageSize: 7,
+                group: {
+                    field: "UnitsInStock", aggregates: [
+
+                        { field: "ProductName", aggregate: "count" },
+                        { field: "UnitPrice", aggregate: "sum"},
+                        { field: "UnitsOnOrder", aggregate: "average" },
+                        { field: "UnitsInStock", aggregate: "count" }
+                    ]
+                },
+                aggregate: [
+                    { field: "UnitPrice", aggregate: "sum" },
+                    { field: "UnitsOnOrder", aggregate: "average" },
+                    { field: "UnitsInStock", aggregate: "min" },
+                    { field: "UnitsInStock", aggregate: "max" }
+                ]
+            },
+            sortable: true,
+            pageable: true,
+            groupable: true,
+            filterable: true,
+            columnMenu: true,
+            reorderable: true,
+            resizable: true,
+            columns: [
+
+                { field: "ProductName", title: "Product Name", aggregates: ["count"], footerTemplate: "Total Count: #=count#", groupFooterTemplate: "Count: #=count#" },
+                { field: "UnitPrice", title: "Unit Price", aggregates: ["sum"] },
+                { field: "UnitsOnOrder", title: "Units On Order", aggregates: ["average"], footerTemplate: "Average: #=average#",
+                    groupFooterTemplate: "Average: #=average#", exportable: false  },
+                { field: "UnitsInStock", title: "Units In Stock", aggregates: ["min", "max", "count"], footerTemplate: "Min: #= min # Max: #= max #",
+                groupHeaderTemplate: "Units In Stock: #= value # (Count: #= count#)" }
+            ]
+        });
+
+
+    </script>
+
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "reportsapp/searchreportbase.html" %}
+{% block table %}
+<table id="example" class="table-responsive">
+    <tbody>
+    <thead>
+    <tr>
+        <th>Distributor Code</th>
+        <th>DISTRIBUTOR NAME</th>
+        <th>ITEM CODE</th>
+        <th>ITEM NAME</th>
+        <th>DATE</th>
+    </tr>
+    {% for sale in Sales %}
+     <tr>
+        <td>{{sale.Distributors}}</td>
+        <td>{{sale.Distributor_Name}}</td>
+        <td>{{sale.Customers}}</td>
+        <td>{{sale.Customer_Name}}</td>
+        <td>{{sale.Bill_Date}}</td>
+     </tr>
+    {% endfor %}
+    </thead>
+    </tbody>
+
+</table>
+{% endblock %}

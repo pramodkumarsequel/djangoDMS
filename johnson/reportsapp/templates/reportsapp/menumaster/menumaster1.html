@@ -1,0 +1,370 @@
+{% extends 'account/base.html' %} {% block title %}
+<title>::MENU MASTER::</title>
+{% endblock %}
+ {% block page-inner %}
+  {% load crispy_forms_tags %} 
+  {%block extracss %} {% endblock extracss %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<div class="page-inner">
+<form action="{% url 'menu_master1' %}" method="post">{% csrf_token %}
+  <div id="main-wrapper">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-white">
+          <div class="panel-heading clearfix">
+            <h4 class="panel-title">Menu Master Panel</h4>
+          </div>
+          <div class="panel-body">
+            {% for msg in messages %}
+            <div class="alert alert-success" id="success-alert" role="alert">
+              <button data-dismiss="alert" class="close" type="button">
+                ×
+              </button>
+              {{msg}}
+            </div>
+            {% endfor %}
+            <div class="panel panel-white col-sm-5">
+              <div class="panel-heading clearfix">
+                <h4 class="panel-title">Add New/Root Menu/Sub Menu</h4>
+              </div>
+              <hr />
+              <div class="main_responsive">
+                <div class="panel-body">
+                  <div role="tabpanel">
+                    <div class="nav_res">
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="active">
+                          <a href="#tab25" role="tab" data-toggle="tab"
+                            >Add Root Menu</a
+                          >
+                        </li>
+                        <li role="presentation">
+                          <a href="#tab26" role="tab" data-toggle="tab"
+                            >Add Sub Menu</a
+                          >
+                        </li>
+                        <li role="presentation">
+                          <a href="#tab27" role="tab" data-toggle="tab"
+                            >Edit/Delete Menu</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      <div
+                        role="tabpanel"
+                        class="tab-pane active fade in"
+                        id="tab25">
+                        <div class="form-group input-group mt-3">
+                          <label class="form-control-placeholder" for="MTYPE">Menu Type</label>
+                            <input type="text" class="form-control" value="New" name="mt" disabled="" >
+                        </div>
+                          <div class="form-group input-group">
+                              
+                              <div id="id_MenuName" class="form-group">
+                                <label for="id_MenuName" class="requiredField">
+                                  Menu Name
+                                </label>
+                                <div>
+                                  <input type="text"name="M" maxlength="50" class="textinput textInput form-control" required="" id="id_MenuName" />
+                                </div>
+                              </div>
+                            
+                        </div>
+                        <div class="form-group input-group">
+                          <div id="div_id_Dord" class="form-group">
+                            <label for="id_Dord" class=""> Display Order </label>
+                            <div>
+                              <input
+                                type="number"
+                                name="Dord"
+                                class="numberinput form-control"
+                                id="id_Dord"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group input-group">
+                          <div id="div_id_IsMobile" class="custom-control custom-checkbox">
+                            <input
+                              type="checkbox"
+                              name="IsMobile"
+                              class="checkboxinput custom-control-input"
+                              id="id_IsMobile"
+                            />
+                            <label for="id_IsMobile" class="custom-control-label"> IsMobile </label>
+                          </div>
+                        </div>    
+                      
+                        <button type="submit"  value="submit"
+                        onclick="submitForms()" name="saverootmenu">Save</button>
+                      
+                      </div>
+
+                      <div
+                        role="tabpanel"
+                        class="tab-pane active fade"
+                        id="tab26"> 
+
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade" id="tab27">
+                        <div class="form-row">
+                            <input type="text" class="form-control" name="MenuName">
+                            <label class="form-control-placeholder" for="MTYPE">Username</label>
+
+                        </div>
+                        <button type="submit" value="submit" name="addsubmenu">Save</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-white col-lg-6 mb-0">
+              <div class="panel-heading clearfix">
+                <h4 class="panel-title">Action-:Create/View/Edit/Delete</h4>
+              </div>
+                  
+              <hr />
+              <div class="panel-body">
+                <div role="tabpanel">
+                  <!-- Nav tabs -->
+
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div class="main_responsive">
+                      <table class="table" id="ContentPlaceHolder1_Gvrole">
+                        <tr>
+                          <th class="info text-center">Roles</th>
+                          <th class="info">IsView
+                            <input  id=chkV  type="checkbox" name="IsView" class="check1" onclick="SelectCheckboxes(this, 1);" />
+                          </th>
+                          <th class="text-center info">IsCreate
+                            <input  id=chkC type="checkbox" name="IsCreate" class="check2" onclick="SelectCheckboxes(this, 2);"/>
+                          </th>
+                          <th class="text-center info">IsEdit
+                            <input id=chkE  type="checkbox" name="isEdit" class="check3" onclick="SelectCheckboxes(this, 3);"/>
+                          </th>
+                          <th class="text-center info">IsDelete
+                            <input id=chkD  type="checkbox" name="isDelete" class="check4" onclick="SelectCheckboxes(this, 4);"/>
+                          </th>
+                        </tr>
+                        {% for role in roles %}
+                        <tr class="MX">
+                          <td class="cls1" name="Roles" value="{{role.id}}">{{role.name}}</td>
+                          <input type="hidden" id="custId_{{forloop.counter0}}" name="content" value="{{role.name}}">
+                          <td><input id="checkV_{{forloop.counter0}}" type="checkbox" class="checkbox" value="IsView={{role.id}}" name="IsView"/></td>
+                          <td><input id="checkC_{{forloop.counter0}}" type="checkbox" class="checkbox" value="IsCreate={{role.id}}" name="IsCreate"/></td>
+                          <td><input id="checkE_{{forloop.counter0}}" type="checkbox" class="checkbox" value="isEdit={{role.id}}" name="isEdit"/></td>
+                          <td><input id="checkD_{{forloop.counter0}}" type="checkbox" class="checkbox" value="isDelete={{role.id}}" name="isDelete"/></td>
+                        </tr>	
+                        {% endfor %}
+            
+                      </table>
+                      <button
+                        type="submit"
+                        class="btn"
+                        style="width: 8rem; float: left"
+                        name="checkbox"
+                        id="id_checkbox"
+                        value="submit"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+<style>
+  .table > tbody > tr.info > td,
+  .table > tbody > tr.info > th,
+  .table > tbody > tr > td.info,
+  .table > tbody > tr > th.info,
+  .table > tfoot > tr.info > td,
+  .table > tfoot > tr.info > th,
+  .table > tfoot > tr > td.info,
+  .table > tfoot > tr > th.info,
+  .table > thead > tr.info > td,
+  .table > thead > tr.info > th,
+  .table > thead > tr > td.info,
+  .table > thead > tr > th.info {
+    background-color: #0e0d0d;
+    color: white;
+  }
+
+  .panel {
+    padding: 25px;
+    margin-top: 10px 20px;
+    margin: 10px 20px;
+    border-radius: 0%;
+    background-color: ghostwhite;
+  }
+
+  .col-md-12 {
+    background-color: ghostwhite;
+  }
+
+  .panel-title {
+    color: white;
+    padding: 0 0 30px;
+    font-size: 14px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #105393;
+    padding-top: 15px;
+    padding-bottom: 12px;
+  }
+
+  input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: large;
+    height: 19px;
+    width: 18px;
+    text-align: center;
+  }
+  .table > tbody > tr > td,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > td,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > thead > tr > th {
+    border-color: #e6e8eb;
+    padding: 12px 8px;
+    background-color: darksalmon;
+    height: 20px;
+    width: 20px;
+    color: black;
+  }
+  td {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+  }
+
+  th {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+  }
+  .main_responsive {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+  .alert-success {
+    color: #020101;
+    background-color: #4bbb71;
+    border-color: #30b661;
+  }
+  .form-control[disabled],
+  fieldset[disabled] .form-control {
+    color: red;
+  }
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    /* border: ridge; */
+    border-color: darkseagreen;
+    background-color: #1ebdc2;
+    padding: 6px;
+    box-shadow: 3px -2px 8px 0px gainsboro;
+  }
+
+  ul li ul.dropdown {
+    min-width: 100%; /* Set width of the dropdown */
+    background: #f2f2f2;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+  }
+  ul li:hover ul.dropdown {
+    display: block; /* Display the dropdown */
+  }
+  ul li ul.dropdown li {
+    display: block;
+  }
+</style>
+
+{% block extrajs %}
+
+
+<script>
+
+  var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+  $("#btn1").click(function(e) {
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        headers:{
+          "X-CSRFToken": csrftoken
+      },
+        url: "{% url "menu_master1" %}",
+        data: { 
+          myCheckboxes:myCheckboxes,
+        },
+        success: function(result) {
+            alert('myCheckboxes');
+        },
+        error: function(result) {
+            alert('error');
+        }
+    });
+});  
+</script> 
+<script type="text/javascript" > 
+  function SelectCheckboxes(headerChk, columnIndex) {
+      var IsChecked = headerChk.checked;
+      var tbl = document.getElementById("ContentPlaceHolder1_Gvrole");
+              for (i = 1; i < tbl.rows.length; i++) {
+                  var curTd = tbl.rows[i].cells[columnIndex];
+                  var item = curTd.getElementsByTagName('input');
+                  for (j = 0; j < item.length; j++) {
+                      if (item[j].type == "checkbox") {
+                          if (item[j].checked != IsChecked) {
+                              item[j].click();
+                          }
+                      }
+                  }
+              }
+          }        
+</script> 
+ 
+{% endblock %}
+ {% endblock %}
+ <script
+ src="https://code.jquery.com/jquery-3.6.1.min.js"
+ integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+ crossorigin="anonymous"
+></script>
+<script>
+  $(document).ready(function(){
+
+    // code to read selected table row cell data (values).
+    $("#ContentPlaceHolder1_Gvrole").on('click','.btnSelect',function(){
+         // get the current row
+         var currentRow=$(this).closest("tr"); 
+         
+         var col1=currentRow.find("td:eq(0)").html(); // get current row 1st table cell TD value
+         var col2=currentRow.find("td:eq(1)").html(); // get current row 2nd table cell TD value
+         var col3=currentRow.find("td:eq(2)").html(); // get current row 3rd table cell  TD value
+         var data=col1+"\n"+col2+"\n"+col3;
+         
+         alert(data);
+    });
+});  
+</script>  

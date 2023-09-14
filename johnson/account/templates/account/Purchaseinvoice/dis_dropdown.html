@@ -1,0 +1,17 @@
+<div id="div_id_Distributors" class="form-group">
+  <label for="id_Distributors" class="requiredField">
+    Distributor Code<span class="asteriskField">*</span>
+  </label>
+  <div>
+    <select
+      name="Distributors"
+      class="select form-control"
+      required=""
+      id="id_Distributors">
+      <option value="" selected="">---------</option>
+        {% for d in orders %}
+      <option value="{{d.id}}">{{d.Distributor_Code}}</option>
+        {% endfor %}
+    </select>
+  </div>
+</div>

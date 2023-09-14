@@ -1,0 +1,34 @@
+
+{% if saledetails %}
+{% for saledetail in saledetails %}
+  <tr>
+    <td>{{saledetail.Sales_Item_Code}}</td>
+    <td>{{saledetail.Sales_Item_Code.Item_Name}}</td>
+    <td>{{saledetail.Sales_Quantity}}</td>
+    <td>{{saledetail.Sales_Rate}}</td>
+    <td>{{saledetail.Sales_Serial_No}}</td>
+    <td>{{saledetail.Sales_Batch}}</td>
+    <td>{{saledetail.Sales_Discount}}</td>
+    <td>{{saledetail.Total_Amount}}</td>
+    <td>{{saledetail.Reference_No}}</td>
+
+
+    <td>
+        <button type="button"
+                class="btn btn-primary btn-sm saledetail-update"
+                data-url="{% url 'saledetail_update' saledetail.id %}">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+      <button type="button"
+      class="btn btn-danger btn-sm js-delete-saledetail"
+      data-url="{% url 'saledetail_delete' saledetail.id %}">
+      <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="7" class="text-center bg-warning">No detailsale</td>
+  </tr>
+{% endfor %}
+{% endif %}

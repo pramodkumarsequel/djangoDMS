@@ -1,0 +1,25 @@
+{% extends 'account/region/regionbase.html' %}
+{% load static %}
+{% block content %}
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>SNo</th>
+            <th>Zone</th>
+            <th>Region Name</th>
+            <th>Action</th>
+
+
+    </thead>
+    {% include 'account/region/partial_region_list.html' %}
+
+</table>
+
+<div class="modal fade" id="modal-book">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>
+</div>
+
+{% endblock %}

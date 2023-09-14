@@ -1,0 +1,17 @@
+<div id="div_id_hierarchy4" class="form-group">
+  <label for="id_hierarchy4" class="requiredField">
+    Hierarchy4<span class="asteriskField">*</span>
+  </label>
+  <div>
+    <select
+      name="hierarchy4"
+      class="select form-control"
+      required=""
+      id="id_hierarchy4">
+      <option value="" selected="">-----SELECT----</option>
+        {% for hier in hierarchys %}
+      <option value="{{hier.id}}">{{hier.Name}}</option>
+        {% endfor %}
+    </select>
+  </div>
+</div>

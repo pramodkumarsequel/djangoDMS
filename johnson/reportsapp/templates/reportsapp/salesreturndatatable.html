@@ -1,0 +1,48 @@
+{% extends "reportsapp/searchreportbase.html" %}
+{% block table %}
+<table id="example" class="table-responsive">
+    <tbody>
+    <thead>
+    <tr>
+        <th>DISTRIBUTOR CODE</th>
+        <th>DISTRIBUTOR NAME</th>
+        <th>CUSTOMER CODE</th>
+        <th>CUSTOMER NAME</th>
+        <th>Bill Date</th>
+        <th>Invoice No</th>
+        <th>Tally Master ID</th>
+        <th>Total Inventory Amount</th>
+        <th>Total GST</th>
+        <th>SGST AMOUNT</th>
+        <th>CGST AMOUNT</th>
+        <th>IGST AMOUNT</th>
+        <th>Cash Discount Amount</th>
+        <th>RO Amount</th>
+        <th>Total Invoice Amount</th>
+
+    </tr>
+    {% for sale in Sales %}
+     <tr>
+        <td>{{sale.Distributors}}</td>
+        <td>{{sale.Distributor_Name}}</td>
+        <td>{{sale.Customers}}</td>
+        <td>{{sale.Customer_Name}}</td>
+        <td>{{sale.Bill_Date}}</td>
+        <td>{{sale.Invoice_No}}</td>
+        <td>{{sale.Tally_Master_ID}}</td>
+        <td>{{sale.Total_Inventory_Amount}}</td>
+        <td>{{sale.Total_GST}}</td>
+        <td>{{sale.SGST_AMOUNT}}</td>
+        <td>{{sale.CGST_AMOUNT}}</td>
+        <td>{{sale.IGST_AMOUNT}}</td>
+        <td>{{sale.Cash_Discount_Amount}}</td>
+        <td>{{sale.RO_Amount}}</td>
+        <td>{{sale.Total_Invoice_Amount}}</td>
+
+     </tr>
+    {% endfor %}
+    </thead>
+    </tbody>
+
+</table>
+{% endblock %}

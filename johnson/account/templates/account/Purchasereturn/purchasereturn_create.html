@@ -1,0 +1,47 @@
+{% extends 'account/Purchasereturn/purchasereturnbase.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!-- header start-->
+{% block header-left %}
+<div class="header-left">
+    <div class="dashboard_bar">
+      Add Purchase Return
+    </div>
+</div>
+{% endblock header-left %}
+<!-- header end -->
+
+<!--content-body start-->
+{% block content-body %}
+<div class="content-body">
+    <div class="basic-form">
+        <form method="POST" enctype="multipart/form-data" novalidate autocomplete="off"  id="disform" data_vendor_load="{% url 'load_vendor_pr' %}" pur-line-item="{% url 'pur_line_items' %}" data-dis-url="{% url 'ajax_load_disname' %}" data-gst-popup="{% url 'load_gst' %}" data-all-popup="{% url 'load_popup' %}" data-pidate-url="{% url 'load_pidate' %}" data-gst-url="{% url 'ajax_load_cgst_sgst' %}">
+            {% csrf_token %}
+            <div class="container-fluid">
+                {% include 'account/Purchase/messages.html' %}
+                <div class="row justify-content-center h-100 align-items-center">
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">PURCHASE RETURN</h4>
+                            </div>
+                            <div class="card-body">
+                                {% include 'account/Purchasereturn/parent_purchasereturn_form.html' %}  
+                            </div>        
+                        </div>    
+
+                        <div class="card">
+                            <div class="card-body">
+                                {% include 'account/Purchasereturn/child_purchasereturn_form.html' %}
+                                <button type="submit" class="btn btn-secondary mt-4 mb-5">Save</button>
+                                <a href="/purchase-return-create/" class="btn btn-primary mt-4 mb-5">Cancel</a>        
+                            </div>       
+                        </div> 
+                    </div>    
+                </div>    
+            </div> 
+        </form>    
+    </div>       
+</div>    
+{% endblock content-body %}
+<!--content body-->

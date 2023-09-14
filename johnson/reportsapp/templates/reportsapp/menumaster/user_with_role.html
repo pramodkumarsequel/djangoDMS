@@ -1,0 +1,4 @@
+<option value="" selected>----SELECT----</option>
+{% for us in users %}
+    <option value="{{us.id}}">{{us.username}} - ({{us.role}})</option>
+{% endfor %}    

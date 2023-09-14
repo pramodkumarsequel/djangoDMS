@@ -1,0 +1,87 @@
+{% extends 'reportsapp/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link href="{% static 'account/css/reportdoc.css' %}" rel="stylesheet"/>
+ <script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>
+{% endblock %}
+{% block page-inner %}
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header">SECONDARY SALES</h3>
+    </div>
+
+
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        <form method="post">{% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-md-3">
+                                      {{form|crispy}}
+                                </div>
+
+                                <div class="col-md-7">
+
+                                            <label for="daterange">Select Date Range</label>
+                                            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 30%">
+                                                    <i class="fa fa-calendar"></i>&nbsp;
+                                                    <span></span> <i class="fa fa-caret-down"></i>
+                                                </div>
+
+                                    <script type="text/javascript">
+                                                $(function() {
+
+                                                    var start = moment().subtract(29, 'days');
+                                                    var end = moment();
+
+                                                    function cb(start, end) {
+                                                        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                                                    }
+
+                                                    $('#reportrange').daterangepicker({
+                                                        startDate: start,
+                                                        endDate: end,
+                                                        ranges: {
+                                                           'Today': [moment(), moment()],
+                                                           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                                           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                                           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                                           'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                                           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                                                        }
+                                                    }, cb);
+
+                                                    cb(start, end);
+
+                                                });
+                                    </script>
+                                </div>
+
+
+                                <div class="col-md-2">
+                                    <button type="submit"class="btn btn-primary" style="margin-top:20px;">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+{% for field in sales %}
+                        {{field}}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extrajs %}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,69 @@
+
+  {% load widget_tweaks %}
+
+  <form method="post" action="{% url 'saledetail_create' %}" class="saledetail-create-form" id="itmform" data-dis-url="{% url 'ajax_load_itemname' %}">
+    {% csrf_token %}
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title"style="color: white;text-align: center;font-size: large;font-weight: unset;">ADD Details of Sales</h4>
+    </div>
+    <div class="modal-body">
+
+      {% include 'account/sales/partial_saledetail_form.html' %}
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+
+  <script>
+
+    $("#itmform").submit(function (e) {
+        debugger;
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        console.log(serializedData)
+
+        // make POST ajax call
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'saledetail_create' %}",
+            data: serializedData,
+            debugger;
+            success: function (response) {
+                // on successfull creating object
+                // 1. clear the form.
+                $("#itmform").trigger('reset');
+                // 2. focus to ItemCode input
+                $("#Sales_Item_Code").focus();
+
+                // display the newly friend to table.
+                var instance = JSON.parse(response["instance"]);
+                var fields = instance[0]["fields"];
+                $("#example tbody").prepend(
+                    `<tr>
+                    <td>${fields["Sales_Item_Code"]||""}</td>
+                    <td>${fields["Sales_Item_Name"]||""}</td>
+                    <td>${fields["Sales_Quantity"]||""}</td>
+                    <td>${fields["Sales_Rate"]||""}</td>
+                    <td>${fields["Sales_Serial_No"]||""}</td>
+                    <td>${fields["Sales_Batch"]||""}</td>
+                    <td>${fields["Sales_Discount"]||""}</td>
+                    <td>${fields["Total_Amount"]||""}</td>>
+                    <td>${fields["Reference_No"]||""}</td>>
+                    </tr>`
+                )
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    })
+  </script>

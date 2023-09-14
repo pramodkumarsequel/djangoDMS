@@ -1,0 +1,54 @@
+{% extends 'reportsapp/itemstock/itemstockbase.html' %}
+{% load custom_filters %}
+{% load mathfilters %}
+{% load humanize %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+   <thead style="background-color:beige;">
+   <tr>
+   {% include 'reportsapp/itemstock/itemstock_header.html' %}   
+   </tr>
+   </thead>
+   {% for item in res %}
+    <tr>
+       <td>{{forloop.counter}}</td>
+       <td>{{item.document_type|default_if_none:"" }}</td>
+       <td>{{item.docid|default_if_none:"" }}</td>
+       <td>{{item.doc_date|default_if_none:"" }}</td>
+       <td>{{item.warehouse_id|default_if_none:"" }}</td>
+       <td>{{item.warehouse_name|default_if_none:"" }}</td>
+       <td>{{item.items}}</td>
+       <td>{{item.item_name|default_if_none:"0"}}</td>
+       <td>{{item.Qty|default_if_none:"0"}}</td>
+       <td>{{item.uom|default_if_none:"0"}}</td>
+       <td>{{item.amount|default_if_none:"0"}}</td>
+       <td>{{item.Hierarchy1}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}    
+{% comment %} <table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+    <tr>
+    {% include 'reportsapp/itemstock/itemstock_header.html' %}   
+    </tr>
+    </thead>
+    {% for item in sales %}
+     <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{item.Item_Code__Hierarchy1__Name|default_if_none:"" }}</td>
+        <td>{{item.Item_Code__Hierarchy2__Name|default_if_none:"" }}</td>
+        <td>{{item.Item_Code__Hierarchy3__Name|default_if_none:"" }}</td>
+        <td>{{item.Item_Code__Hier4__Name|default_if_none:"" }}</td>
+        <td>{{item.Item_Code__Hier5__Name|default_if_none:"" }}</td>
+        <td>{{item.Item_Code__Item_Name}}</td>
+        <td>{{item.Quantity|default_if_none:"0"}}</td>
+        <td>{{item.Item_Code__detailofpurchase__Purchases_Quantity|default_if_none:"0"}}</td>
+        <td>{{item.Item_Code__detailsofpurchasereturn__Purchases_Return_Quantity|default_if_none:"0"}}</td>
+        <td>{{item.Item_Code__sales_detail__Sales_Quantity|default_if_none:"0"}}</td>
+        <td>{{item.Item_Code__sales_return_detail__Sales_Quantity|default_if_none:"0"}}</td>
+        <td>{{item.closing_balance|default_if_none:"0"}}</td>
+     </tr>
+     {% endfor %}
+</table>
+{% endblock %}     {% endcomment %}

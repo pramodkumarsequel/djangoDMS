@@ -1,0 +1,17 @@
+   .modal-footer, .modal-header {
+    padding: 25px;
+    border: none;
+    background-color: #00695c;
+}
+hr{
+    border: revert;
+    border-block-color: black;
+    border-block-style: revert;
+    }
+
+h3{
+    background-color: #393997;
+    color: white;
+    padding: 10px;
+    border-bottom-style: groove;
+}

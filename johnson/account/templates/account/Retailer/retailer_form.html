@@ -1,0 +1,61 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-6 mb-3">
+        {{ form.Customer_Code|as_crispy_field }}
+    </div>  
+
+    <div class="form-group col-md-6 mb-3">
+        {{form.Customer_Name|as_crispy_field}}
+    </div>
+</div>  
+<div class="row">                          
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Customer_Group|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.pan|as_crispy_field}}
+    </div>       
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.zone|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.region|as_crispy_field}}   
+    </div>  
+</div>                              
+<div class="row"> 
+    <div class="form-group col-md-6 mb-0">
+        {{ form.state|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{ form.city|as_crispy_field }}
+    </div>
+</div>      
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Pincode|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Contact_person_name|as_crispy_field }}
+    </div>
+</div>                             
+    <div class="form-group col-md-12 mb-0">
+        {{ form.Address|as_crispy_field }}
+    </div>
+<div class="row"> 
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Email_ID|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.gstin|as_crispy_field}}
+    </div>
+</div>  
+<div class="row">     
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Distributor|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Contact_Number|as_crispy_field }}
+    </div>
+</div>

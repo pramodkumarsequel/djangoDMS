@@ -1,0 +1,27 @@
+{% extends 'account/Retailer/retailerbase.html' %}
+{% load static %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+        <thead style="background-color:beige;">
+            <tr>
+                <th style="width:50px;">
+                    <div class="form-check custom-checkbox checkbox-primary check-lg me-3">
+                        <input type="checkbox" class="form-check-input" id="checkAll" value="">
+                        <label class="form-check-label" for="checkAll"></label>
+                    </div>
+                </th> 
+                <th>S.No</th>
+                <th>Retailer Code</th>
+                <th>Retailer Name</th>
+                <th>Retailer Group</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>   
+            </tr>    
+        </thead> 
+        {% include 'account/Retailer/partial_retailer_list.html' %}
+</table> 
+{% endblock %}   
+  

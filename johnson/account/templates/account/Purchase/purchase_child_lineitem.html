@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add Line Item</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-responsive-md table-bordered table-striped" id="itemname" load_item_data="{% url 'load_item_d' %}">
+                        <thead style="background-color: beige;">
+                            <tr>
+                                <th>*ITEM CODE</th>
+                                <th>ITEM NAME</th>
+                                <th>*QTY</th>
+                                <th>*PURCHASE UOM</th>
+                                <th>*RATE</th>
+                                <th>*DISCOUNT</th>
+                                <th>SERIAL NO</th>
+                                <th>*AMOUNT</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% include 'account/Purchase/purchase_child_item_form.html' %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    

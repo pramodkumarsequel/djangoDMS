@@ -1,0 +1,139 @@
+<div class="col-xl-12 col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Edit Permissions</h4>
+      </div>
+  
+      <div class="card-body">
+        <div class="basic-form">
+          <form method="post" enctype="multipart/form-data">
+            <input
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value="1MOtwJ7hsxOPqeeRnJab8ARxn2dMEIPDlNlISGLOxH3arS8SrnwlkfrrZaXXq7mH"
+            />
+            <div class="row">
+              <div class="mb-3 col-md-12">
+                <label class="form-label">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value="Can add log entry"
+                  class="form-control"
+                  required=""
+                  id="id_name"
+                />
+              </div>
+  
+              <div class="mb-3 col-md-12">
+                <label class="form-label">Code Name</label>
+                <input
+                  type="text"
+                  name="codename"
+                  value="add_logentry"
+                  class="form-control"
+                  required=""
+                  id="id_codename"
+                />
+              </div>
+  
+              <div class="mb-3 col-md-12">
+                <label class="form-label">Content Type</label>
+                <select
+                  name="content_type"
+                  class="default-select form-control wide"
+                  required=""
+                  id="id_content_type"
+                  style="display: none"
+                >
+                  <option value="">---------</option>
+  
+                  <option value="21" selected="">admin | log entry</option>
+  
+                  <option value="22">auth | permission</option>
+  
+                  <option value="23">auth | group</option>
+  
+                  <option value="24">contenttypes | content type</option>
+  
+                  <option value="25">sessions | session</option>
+  
+                  <option value="26">dashboard | configuration</option>
+  
+                  <option value="27">users | custom user</option>
+  
+                  <option value="28">pages | Page</option>
+  
+                  <option value="29">pages | Page Seo</option>
+  
+                  <option value="30">pages | Page Meta</option>
+  
+                  <option value="31">blog | Blog</option>
+  
+                  <option value="32">blog | Tag</option>
+  
+                  <option value="33">blog | Seo</option>
+  
+                  <option value="34">blog | Meta</option>
+  
+                  <option value="35">blog | Category</option>
+  
+                  <option value="36">menu | items</option>
+  
+                  <option value="37">menu | Menu</option>
+  
+                  <option value="38">subscribe | subscriber</option>
+  
+                  <option value="39">contactus | Contact</option>
+  
+                  <option value="40">site</option>
+                </select>
+                <div
+                  class="nice-select default-select form-control wide"
+                  tabindex="0"
+                >
+                  <span class="current">admin | log entry</span>
+                  <ul class="list">
+                    <li data-value="" class="option">---------</li>
+                    <li data-value="21" class="option selected">
+                      admin | log entry
+                    </li>
+                    <li data-value="22" class="option">auth | permission</li>
+                    <li data-value="23" class="option">auth | group</li>
+                    <li data-value="24" class="option">
+                      contenttypes | content type
+                    </li>
+                    <li data-value="25" class="option">sessions | session</li>
+                    <li data-value="26" class="option">
+                      dashboard | configuration
+                    </li>
+                    <li data-value="27" class="option">users | custom user</li>
+                    <li data-value="28" class="option">pages | Page</li>
+                    <li data-value="29" class="option">pages | Page Seo</li>
+                    <li data-value="30" class="option">pages | Page Meta</li>
+                    <li data-value="31" class="option">blog | Blog</li>
+                    <li data-value="32" class="option">blog | Tag</li>
+                    <li data-value="33" class="option">blog | Seo</li>
+                    <li data-value="34" class="option">blog | Meta</li>
+                    <li data-value="35" class="option">blog | Category</li>
+                    <li data-value="36" class="option">menu | items</li>
+                    <li data-value="37" class="option">menu | Menu</li>
+                    <li data-value="38" class="option">subscribe | subscriber</li>
+                    <li data-value="39" class="option">contactus | Contact</li>
+                    <li data-value="40" class="option">site</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+            <button type="submit" class="btn btn-secondary mt-4 mb-3">
+              Save
+            </button>
+            <a href="/dashboard/index/" class="btn btn-primary mt-4 mb-3"
+              >Cancel</a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

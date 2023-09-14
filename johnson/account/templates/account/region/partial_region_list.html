@@ -1,0 +1,27 @@
+{% if regions %}
+<tr>
+          {% for region in regions %}
+          <td>{{forloop.counter}}</td>
+          <td>{{region.zone}}</td>
+          <td>{{region.Region_Name}}</td>
+          <td>
+            <button type="button"
+                    class="btn btn-primary btn-sm region-update"
+                    data-url="{% url 'region_update' region.id %}">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          <button type="button"
+              class="btn btn-danger btn-sm js-delete-region"
+              data-url="{% url 'region_delete' region.id %}">
+              <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </td>
+      </tr>
+   
+    {% empty %}
+
+      <tr>
+        <td colspan="7" class="text-center bg-warning">No Data</td>
+      </tr>
+    {% endfor %}
+{% endif %}

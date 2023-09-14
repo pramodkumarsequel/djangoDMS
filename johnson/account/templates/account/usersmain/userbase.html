@@ -1,0 +1,184 @@
+{% extends 'reportsapp/base1.html' %}
+{% load crispy_forms_tags %}
+    {% load static %}
+    <!--****Header Start********-->
+
+<!--customcss block -->
+{% block customcss %}
+<link rel="stylesheet" href="{% static 'reportsapp/dashboard/vendor/datatable/dataTables.min.css' %}">
+{% endblock customcss %}
+<!-- end-->
+
+    {% block header-left %}
+    <div class="header-left">
+        <div class="dashboard_bar">
+            Users
+        </div>
+    </div>
+    {% endblock header-left %}
+    <!--***********Header END***************-->
+
+    
+	<!--**********************************
+            Content body start
+        ***********************************-->
+        {% block content-body %}
+            <div class="content-body" style="min-height:728px;">
+                <div class="container-fluid">
+                        {% include 'account/msg/messages.html' %}
+                    <div id="message">
+                    </div>
+                    <!--filter-->  
+                    <div class="custome-accordion">
+                        <div class="accordion" id="accordionUserFilter">
+                            <div class="accordion-item card">
+                                <h2 class="accordion-header border-0" id="headingOne">
+                                <button class="accordion-button d-flex justify-content-between align-items-center " type="button" data-bs-toggle="collapse" data-bs-target="#collaps-user-filter" aria-expanded="true" aria-controls="collaps-user-filter">
+                                        <span class="acc-heading">Filter</span>
+                                </button>
+                                </h2>
+                                <div id="collaps-user-filter" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionUserFilter" style="">
+                                    <div class="accordion-body card-body pt-0">
+                                    <form method="post" id="user-filter-form">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-xl-4">
+                                                        <select
+                                                        name="filter-user-group"
+                                                        class="default-select form-control wide mb-3"
+                                                        id="id_fields"
+                                                        style="display: none">
+                                                           <option value="" selected>---Please Select Field---</option>
+                                                        {% for field_name in field_names %}
+                                                        <option value="{{ field_name }}">{{ field_name }}</option>
+                                                            {% endfor %}
+                            
+                                                        </select>
+                                                    </div>    
+                                                    <div class="col-lg-6 col-xl-4">
+                                                        <div class="mb-3">
+                                                            <input type="text" name="value" class="form-control input-default" placeholder="Please Enter Field Value">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-xl-3">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <button type="submit" class="btn btn-primary w-10 mb-1"><i class="fa-solid fa-magnifying-glass me-1"></i></button>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <a href="javascript:void(0);" type="button" class="btn light btn-outline-primary clear-user-filter w-100">Clear</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                                    </form>
+                                    
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Users</h4>                
+                                <div class="d-flex">
+                                      <!-- Button trigger modal -->
+                                            <a button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Import</button>
+                                            </a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalCenter">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background-color:primary;">
+                                                            <h5 class="modal-title" style="color:white; text-align:center;">Import Csv File</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                            </button>
+                                                        </div>
+                                                        <form method="post" action="/user_import_excel/" id="excel_file_form" enctype="multipart/form-data">{% csrf_token %}
+                                                        <div class="modal-body">
+                                                            <div class="input-group mb-3">
+                                                                <div class="form-file">
+                                                                    <input type="file" name="excel_file" class="form-file-input form-control">
+                                                                </div>
+                                                                <button class="btn btn-primary btn-sm me-1" type="submit">upload</button>
+                                                                <button title="Download Import Sample & Format" class="btn btn-primary btn-sm" type="submit"><i class="bi bi-info-circle-fill"></i></button>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                    
+                                    <a href="/export/user/" class="btn btn-primary me-2"><span>Download</span>
+                                    </a>  
+                                    <button type="button" id="delete_multiple_btn" class="btn light btn-outline-primary me-2 ">Delete</button>               
+                                    <a href="{% url 'user-create' %}" class="btn btn-primary">ADD USER <span class="btn-icon-end">
+                                        <i class="fa fa-plus"></i></span>
+                                    </a>    
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    {% block content %}
+                                    {% endblock %}        
+                                   
+                                </div>     
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>    
+            </div>  
+        {% endblock content-body %}
+
+
+         <!--**********************************
+            Content body end 
+        ***********************************-->
+        {% block vendorjs %}
+        <script src="{% static 'reportsapp/dashboard/vendor/datatable/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'reportsapp/dashboard/vendor/datatable/datatables.init.js' %}"></script>
+        <script src="{% static 'reportsapp/dashboard/vendor/users/user_list.js' %}"></script>   
+        <script>
+            $(document).ready(function() {
+              $('#excel_file_form').submit(function(event) {
+                event.preventDefault();
+                var form = $(this);
+                var formData = new FormData(form[0]);
+                
+                $.ajax({
+                  url: form.attr('action'),
+                  type: form.attr('method'),
+                  data: formData,
+                  processData: false,
+                  contentType: false,
+                  success: function(response) {
+                    if (response.status === 'success') {
+                      alert('Data imported successfully.');
+                      window.location.href="/user-list/"
+                    } else {
+                      alert(response.message);
+                      window.location.href="/user-list/"
+                    }
+                  },
+                  error: function(xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                    alert('Error occurred during import.');
+                    window.location.href="/user-list/"
+                  }
+                });
+              });
+            });
+          </script>    
+        {% endblock vendorjs %} 
+        

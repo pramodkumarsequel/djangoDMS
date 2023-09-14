@@ -1,0 +1,37 @@
+{% extends 'reportsapp/dashboard/dashboardbase.html' %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+    <tr>
+    {% for fld in fields %}
+        <th>{{fld }}</th>
+    {% endfor %}    
+    </tr>
+    </thead>
+    {% for sale in sales %}
+       {% for r in sale.receipt_note_detail_set.all %}
+     <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{sale.billing_entity|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Distributors.Distributor_Name|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Invoice_No|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.supplier_invoice_date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.recipt_no|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.receipt_note_date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Bill_Date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_Inventory_Amount|default_if_none:"nbsp;" }}</td>
+        <td>{{sale.Total_GST|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.SGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.CGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.IGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Cash_Discount_Amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.R_O_Amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_Amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.updated_on}}</td>
+        <td>{{sale.created_on}}</td>
+
+     </tr>
+        {% endfor %}
+     {% endfor %}
+</table>
+{% endblock %}    

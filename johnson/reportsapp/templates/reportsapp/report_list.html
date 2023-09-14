@@ -1,0 +1,30 @@
+{% extends 'reportsapp/base.html' %}
+{% load static %}
+{% block extracss %}
+<link href="{% static 'account/css/reportdoc.css' %}" rel="stylesheet"/>
+{% endblock %}
+{% block page-inner %}
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header">DISTRIBUTOR SALES DOC REPORT</h3>
+    </div>
+
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                         <p>
+                             <button type="button" value="submit" class="btn btn-primary">
+
+
+                             </button>
+                         </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

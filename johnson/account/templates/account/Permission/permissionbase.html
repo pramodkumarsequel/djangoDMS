@@ -1,0 +1,70 @@
+{% extends 'reportsapp/base1.html' %}
+{% load static %}
+<!-- header start -->
+{% block header-left %}
+<div class="header-left">
+  <div class="dashboard_bar">Permissions</div>
+</div>
+{% endblock header-left %}
+<!-- header end -->
+<!-- content-body start -->
+{% block content-body %}
+<div class="content-body" style="min-height: 728px">
+    <div class="container-fluid">
+        {% if messages %}
+        <ul class="messages">
+            <li class="success">
+               <div class="alert alert-success alert alert-dismissible alert-alt solid fade show">
+                    <div class="media">
+                        <div class="media-body">
+                            {% for msg in messages %}
+                            <p class="mb-0">{{msg}}</p> 
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="btn-close"
+                    ></button>
+                </div>
+            </li>
+          </ul>
+        {% endif %}
+        <div id="message"></div>
+        <!--filter-->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Permissions</h4>
+                        <div class="d-flex">
+                        </div>
+                    </div>
+                    {% include 'account/Permission/permission_list.html' %}
+                </div>
+            </div>
+    </div>    
+</div>  
+{% endblock content-body %}
+<!--- content-body end -->
+{% block vendorjs %}
+<script src="{% static 'reportsapp/dashboard/vendor/group/popper.min.js' %}"></script>
+<script src="{% static 'reportsapp/dashboard/vendor/group/run_prettify.js' %}"></script>
+<script src="{% static 'reportsapp/dashboard/vendor/group/jquery.bootstrap-duallistbox.js' %}"></script>
+<script src="{% static 'reportsapp/dashboard/vendor/users/role_list.js' %}"></script> 
+<script type="text/javascript">
+    var demo1 = $('select[name=permissions]').bootstrapDualListbox(
+
+        {
+            preserveSelectionOnMove: 'moved',
+            moveOnSelect: true,
+            moveAllLabel: 'Move all',
+            moveSelectedLabel: 'Move selected'
+        }
+    );
+    
+   
+</script>
+{% endblock vendorjs %}
+

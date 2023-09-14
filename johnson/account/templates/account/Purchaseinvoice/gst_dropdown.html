@@ -1,0 +1,17 @@
+<div id="div_id_gst_type" class="form-group">
+  <label for="id_gst_type" class="requiredField">
+    GST Type<span class="asteriskField">*</span>
+  </label>
+  <div>
+    <select
+      name="gst_type"
+      class="select form-control"
+      required=""
+      id="id_gst_type">
+      <option value="" selected="">---------</option>
+        {% for gst in gsttype %}
+      <option value="{{gst.id}}">{{gst.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>

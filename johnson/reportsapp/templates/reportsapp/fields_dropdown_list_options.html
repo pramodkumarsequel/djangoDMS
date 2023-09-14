@@ -1,0 +1,10 @@
+<div id="div_id_fields" class="form-group">
+    <label for="id_fields" class=>Field Type</label>
+</div>
+<select name="fields" class="select form-control" id="id_fields">
+    <option value="">--------SELECT--------</option>
+    {% for field in fields %}
+  <option value="{{field.name}}">{{field.verbose_name}}</option>
+    {% endfor %}
+
+</select>

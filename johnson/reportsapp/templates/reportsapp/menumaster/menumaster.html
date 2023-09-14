@@ -1,0 +1,523 @@
+{% extends 'account/base.html' %}
+{% block title %}
+<title>::MENU MASTER::</title>
+{% endblock %}
+{% block page-inner %} 
+{% load crispy_forms_tags %}
+{%block extracss %}
+{% endblock extracss %}
+<div class="page-inner">
+  <div id="main-wrapper">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-white">
+          <div class="panel-heading clearfix">
+            <h4 class="panel-title">Menu Master Panel</h4>
+          </div>
+          <div class="panel-body">
+            {% for msg in messages %}
+                <div class="alert alert-success" id="success-alert" role="alert">
+                    <button data-dismiss="alert" class="close" type="button">×</button>
+                    {{msg}}
+                </div>
+            {% endfor %}
+            <div class="panel panel-white col-sm-5">
+              <div class="panel-heading clearfix">
+                <h4 class="panel-title">Add New/Root Menu/Sub Menu</h4>
+              </div>
+              <hr />
+                <div class="main_responsive">
+                    <div class="panel-body">
+                            <div role="tabpanel">
+                              <div class="nav_res">  
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#tab25" role="tab" data-toggle="tab"
+                                    >Add Root Menu</a
+                                    >
+                                </li>
+                                <li role="presentation">
+                                    <a href="#tab26" role="tab" data-toggle="tab"
+                                    >Add Sub Menu</a
+                                    >
+                                </li>
+                                <li role="presentation">
+                                    <a href="#tab27" role="tab" data-toggle="tab"
+                                    >Edit/Delete Menu</a
+                                    >
+                                </li>
+                                </ul>
+                            </div>   
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                <div
+                                    role="tabpanel"
+                                    class="tab-pane active fade in"
+                                    id="tab25"
+             >
+                                    <form action="" method="post"> {% csrf_token %}
+                                    <div class="row">    
+                                     <div class="form-row">
+
+                                        <div class="form-group col-md-6 mb-0">
+                                            {{form.MTYPE|as_crispy_field}}
+                                        </div>
+                                        <div class="form-group col-md-6 mb-0">
+                                            {{form.MenuName|as_crispy_field}}
+                                        </div>
+                                    </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{form.Dord|as_crispy_field}}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                    
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{form.IsMobile|as_crispy_field}}
+                                            </div> 
+                                    
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{form.Image|as_crispy_field}}
+                                            </div>
+                                        </div> 
+                                        <div class="form-row">
+                                        <div class="form-group col-md-6 mb-0">
+                                            <button
+                                            type="submit"
+                                          
+                                            class="btn  btn-primary"
+                                            style="width: 8rem; float:left"
+                                            name = "rootmenu"
+                                            onclick="submitForms()"
+                                            >
+                                            Save
+                                            </button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+
+                                <div
+                                    role="tabpanel"
+                                    class="tab-pane active fade"
+                                    id="tab26">
+                                    <div class="row">
+                                        <form action="" method="post">{% csrf_token %}
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6 mb-0">
+                                                    {{form1.Pmenu|as_crispy_field}}    
+                                                </div> 
+                                                <div class="form-group col-md-6 mb-0">
+                                                    {{form1.pagelinktype|as_crispy_field}}    
+                                                </div>     
+                                            </div> 
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6 mb-0">
+                                                    {{form1.pagelink|as_crispy_field}}    
+                                                </div> 
+                                                <div class="form-group col-md-6 mb-0">
+                                                    {{form1.MenuName|as_crispy_field}}    
+                                                </div>     
+                                            </div>  
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6 mb-0">
+                                                    {{form1.Dord|as_crispy_field}}    
+                                                </div> 
+                                                <div class="form-group col-md-6 mb-0">
+                                                    {{form1.Image|as_crispy_field}}    
+                                                </div>     
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4 mb-0">
+                                                    {{form1.IsMobile|as_crispy_field}}
+                                                </div> 
+                                                <div class="form-group col-md-6 mb-0">
+                                                    <button
+                                                    type="submit"
+                                                    class="btn  btn-primary"
+                                                    style="width: 8rem; float:right"
+                                                    name="submenu"
+                                                    >
+                                                    Save
+                                                    </button> 
+                                                </div>    
+                                            </div> 
+                                        </form>         
+                                    </div>          
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab27">
+                                    <div class="row">
+                                    <div class="col-md-12">                                  
+                                        <div class="table-responsive">
+                                            <div class="table">
+                                                <thead>
+                                               
+                                                        <div class="page-sidebar-inner">
+                                                            <div class="page-sidebar-menu">
+                                                               
+                                                                <ul class="accordion-menu">
+                                                                  <tr>  
+                                                                    {% for item in request.session.mainM  %}
+                                                                    {% if item.Is_View and request.user.role.id in item.usrole  %}  
+                                                                        <tr>         
+                                                                            <th><a href="{{item.pagelink}}">{{item.MenuName}}<i class="accordion-icon fa fa-angle-left"></i></a></th>                           
+                                                                            <ul class="sub-menu" id="{{ item.MenuName }}">
+                                                                                {% for  value in  request.session.submenu %}   
+                                                                                    {% if value.Pmenu == item.id and request.user.role.id in value.usrole %}    
+                                                                                        <li><a style="color:black;" href="{{ value.pagelink }}">{{ value.MenuName }}</a></li>
+                                                                                    {% endif %}      
+                                                                                {% endfor %}   
+                                                                            </ul>
+                                                                            {% endif %}
+                                                                            {% endfor %} 
+                                                                        </tr>
+                                                        
+                                                                        </li>
+                                                                        <th>
+                                
+                                                                </ul>
+
+                                                            </tr> 
+                                                            </div>
+                                                        </div>            
+                                                </thead>    
+                                            </div>    
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{editmenuform.Pmenu|as_crispy_field}}
+                                            </div> 
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{editmenuform.pagelinktype|as_crispy_field}}
+                                            </div>   
+                                        </div>  
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{editmenuform.pagelink|as_crispy_field}}
+                                            </div> 
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{editmenuform.MenuName|as_crispy_field}}
+                                            </div>   
+                                        </div> 
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{editmenuform.Dord|as_crispy_field}}
+                                            </div> 
+                                            <div class="form-group col-md-6 mb-0">
+                                                {{editmenuform.IsMobile|as_crispy_field}}
+                                            </div> 
+                                              
+                                        </div> 
+                                        <div class="form-row">
+
+                                         <div class="form-group">
+                                            {{editmenuform.usrole|as_crispy_field}}
+                                            </div>   
+                                        </div>      
+                                    </div>    
+                                </div>
+                                </div>
+                            </div>
+                         
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-white col-lg-6 mb-0">
+              <div class="panel-heading clearfix">
+                <h4 class="panel-title">Action-:Create/View/Edit/Delete</h4>   
+              </div>
+
+              <hr />
+              <div class="panel-body">
+                <div role="tabpanel">
+                  <!-- Nav tabs -->
+
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                        <div class="main_responsive">
+                          <form id="checkboxform" method="post">{% csrf_token %}
+                            <table class="table">
+                                <tr>
+                                    <th class="info text-center">Roles</th>
+                                    <th class="info">
+                                    IsView
+                                    <input
+                                        type="checkbox"
+                                        name="Is_View"
+                                        class="check1"
+                                        onClick="toggleCheckbox(this.checked)"
+                                    />
+                                    </th>
+                                    <th class="text-center info">
+                                    IsCreate
+                                    <input
+                                        type="checkbox"
+                                        name="Is_Create"
+                                        class="check2"
+                                        onClick="toggleCheckBox(this.checked)"
+                                    />
+                                    </th>
+                                    <th class="text-center info">
+                                    IsEdit
+                                    <input
+                                        type="checkbox"
+                                        name="Is_Edit"
+                                        class="check3"
+                                        onClick="CheckBox(this.checked)"
+                                    />
+                                    </th>
+                                    <th class="text-center info">
+                                    IsDelete
+                                    <input
+                                        type="checkbox"
+                                        name="Is_Delete"
+                                        class="check4"
+                                        onClick="isDeleteCheckBox(this.checked)"
+                                    />
+                                    </th>
+                                    
+                                </tr>
+                                    {% for role in form.usrole %}
+                                            <tr class="MX" >
+                                                <td class="cls1" name="usrole" value="{{role.id}}">{{role}}</td>
+                                                <input type="hidden" id="custId_{{forloop.counter0}}" name="hidden" value="{{role.id}}">
+                                                <td><input type="checkbox"  class="checkbox" value="{{role.id}}_{{forloop.counter0}}" name="Is_View" id="Is_View_{{forloop.counter0}}" onclick='handleClick(this);'></td>
+                                                <td><input type="checkbox" class="checkbox" value="{{role.id}}_{{forloop.counter0}}" name="Is_Create" id="Is_Create_{{forloop.counter0}}" onclick='handleClick(this);'></td>
+                                                <td><input type="checkbox" class="checkbox" value="{{role.id}}_{{forloop.counter0}}" name="is_Edit" id="is_Edit_{{forloop.counter0}}" onclick='handleClick(this);'></td>
+                                                <td><input type="checkbox" class="checkbox" value="{{role.id}}_{{forloop.counter0}}" name="is_Delete" id="is_Delete_{{forloop.counter0}}" onclick='handleClick(this);'></td>                                                                     
+                                            </tr>
+                                    {% endfor %}
+                                       
+                            </table>
+                           <button
+                            type="submit"
+                            class="btn"
+                            style="width: 8rem; float:left"
+                            name="checkbox"
+                            id="id_checkbox"
+                            value="submit">
+                            </button>
+                        </form> 
+                      </div>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .table > tbody > tr.info > td,
+  .table > tbody > tr.info > th,
+  .table > tbody > tr > td.info,
+  .table > tbody > tr > th.info,
+  .table > tfoot > tr.info > td,
+  .table > tfoot > tr.info > th,
+  .table > tfoot > tr > td.info,
+  .table > tfoot > tr > th.info,
+  .table > thead > tr.info > td,
+  .table > thead > tr.info > th,
+  .table > thead > tr > td.info,
+  .table > thead > tr > th.info {
+    background-color: #0e0d0d;
+    color: white;
+  }
+
+  .panel {
+    padding: 25px;
+    margin-top: 10px 20px;
+    margin: 10px 20px;
+    border-radius: 0%;
+    background-color: ghostwhite;
+  }
+
+  .col-md-12 {
+    background-color: ghostwhite;
+  }
+
+  .panel-title {
+    color: white;
+    padding: 0 0 30px;
+    font-size: 14px;
+    text-align: center;
+    font-size: 20px;
+    background-color: #105393;
+    padding-top: 15px;
+    padding-bottom: 12px;
+  }
+
+  input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: large;
+    height: 19px;
+    width: 18px;
+    text-align: center;
+  }
+  .table > tbody > tr > td,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > td,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > thead > tr > th {
+    border-color: #e6e8eb;
+    padding: 12px 8px;
+    background-color: darksalmon;
+    height: 20px;
+    width: 20px;
+    color:black;
+  }
+  td {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+  }
+
+  th {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+  }
+  .main_responsive {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+  .alert-success {
+    color: #020101;
+    background-color: #4bbb71;
+    border-color: #30B661;
+}
+.form-control[disabled], fieldset[disabled] .form-control {
+    color: red;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    /* border: ridge; */
+    border-color: darkseagreen;
+    background-color: #1ebdc2;
+    padding: 6px;
+    box-shadow: 3px -2px 8px 0px gainsboro;
+}
+
+ul li ul.dropdown{
+    min-width: 100%; /* Set width of the dropdown */
+    background: #f2f2f2;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+}
+ul li:hover ul.dropdown{
+    display: block;	/* Display the dropdown */
+}
+ul li ul.dropdown li{
+    display: block;
+}
+</style>
+{% endblock %}
+   
+<script>
+    function toggleCheckbox(isChecked) {
+        if(isChecked) {
+            $('input[name="IsView"]').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $('input[name="IsView"]').each(function() {
+                this.checked = false;
+            });
+        }
+        
+    }
+
+    function toggleCheckBox(isChecked) {
+        if(isChecked) {
+            $('input[name="IsCreate"]').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $('input[name="IsCreate"]').each(function() {
+                this.checked = false;
+            });
+        }
+        
+    }
+    function CheckBox(isChecked) {
+        if(isChecked) {
+            $('input[name="isEdit"]').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $('input[name="isEdit"]').each(function() {
+                this.checked = false;
+            });
+        }
+        
+    }
+    function isDeleteCheckBox(isChecked) {
+        if(isChecked) {
+            $('input[name="isDelete"]').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $('input[name="isDelete"]').each(function() {
+                this.checked = false;
+            });
+        }
+        
+    }
+    submitForms = function(){
+        var form = document.getElementById("#checkboxform").submit();
+        console.log(form)
+        document.getElementById("#id_checkbox").submit();   
+
+   
+    }
+
+
+</script>
+{% block extrajs %}
+<script>
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    $(document).ready(function() {
+        $("#btn1").click(function(event) {
+          event.preventDefault();
+          var selected_items = [];
+          $.each($(".checkbox:checked"), function(){
+              selected_items.push($(this).val());
+              
+          });
+          console.log(selected_items);
+          $.ajax({
+            type: "POST",
+            headers: {'X-CSRFToken': csrftoken},
+            url: '/report/menumaster1/',
+            data: {
+              'selected_items': selected_items,
+            },
+            success: function(response) {
+              console.log(response);
+            }
+          });
+        });
+      });
+      
+</script>      
+{% endblock %}

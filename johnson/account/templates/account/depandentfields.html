@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container mt-5" style="width:40%">
+    <h3>Dynamic Dependant/Chained Dropdownlist</h3>
+    <label for="country">Country</label>
+    <select class="form-select" aria-label="Default select example" id="zone" onchange="countryfield()">
+        <option selected>Choose Country</option>
+        {% for i in zone %}
+            <option value="{{i.id}}" {% if request.GET.zone == i.id|lower %}selected{% endif %}>{{i.name}}</option>
+        {% endfor %}
+    </select>
+    <br/>
+    <label for="state">Region</label>
+    <select class="form-select" aria-label="Default select example" id="region" onchange="statefield()">
+        <option selected>Choose Region</option>
+        {% for i in region %}
+            <option value="{{i.id}}" {% if request.GET.region == i.id|lower %}selected{% endif %}>{{i.Region_Name}}</option>
+        {% endfor %}
+    </select>
+<br/>
+    <label for="district">State</label>
+    <select class="form-select" aria-label="Default select example" id="state" onchange="cityfield()">
+        <option selected>Choose State</option>
+        {% for i in state %}
+        <option value="{{i.id}}" {% if request.GET.state == i.id|lower %}selected{% endif %}>{{i.State_Name}}</option>
+        {% endfor %}
+    </select>
+    <br/>
+    <label for="district">City</label>
+    <select class="form-select" aria-label="Default select example" id="city">
+        <option selected>Choose city</option>
+        {% for i in city %}
+        <option value="{{i.id}}" {% if request.GET.city == i.id|lower %}selected{% endif %}>{{i.City_Name}}</option>
+        {% endfor %}
+    </select>
+    <br/>
+</div>
+<script>
+    function countryfield(){
+        zoneid = document.getElementById('zone').value;
+        window.location = "http://127.0.0.1:8000/load_zone/search/?zone="+zoneid;
+    }
+    function statefield(){
+       regionid = document.getElementById('region').value;
+       window.location = "http://127.0.0.1:8000/load_zone/search/?zone="+'{{request.GET.zone}}'+"&region="+regionid;
+    }
+    function cityfield(){
+      stateid = document.getElementById('state').value;
+      window.location = "http://127.0.0.1:8000/load_zone/search/?zone="+'{{request.GET.zone}}'+"&region="+'{{request.GET.region}}'+"&state="+stateid;
+
+
+   }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
+

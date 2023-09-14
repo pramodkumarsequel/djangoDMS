@@ -1,0 +1,45 @@
+{% load widget_tweaks %}
+{% for field in form %}
+  <div class="form-group{% if field.errors %} has-error{% endif %}">
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {% render_field field class="form-control" %}
+    {% for error in field.errors %}
+      <p class="help-block">{{ error }}</p>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+<script>
+    $("#id_Sales_Item_Code").change(function () {
+      var url = $("#itmform").attr("data-dis-url");  // get the url of the `
+      var distributorId = $(this).val();
+      $.ajax({                  // initialize an AJAX request
+        url: url,                    // set the url of the request
+        data: {
+          'items': distributorId      // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the  view function
+          $("#id_Sales_Item_Name").val(data.item_name);  // replace the contents of the with the data that came from the server
+        }
+      });
+
+    });
+
+    function myFunction(e) {
+    document.getElementById("myText").value = e.target.value
+}
+</script>
+<script type="text/javascript">
+    $('.form-group input').on("input", function () {;
+        var total = []
+        var textValue1 = $("#id_Sales_Quantity").val();
+        var textValue2 = $("#id_Sales_Rate").val();
+        var textValue3 = $("#id_Sales_Discount").val();
+        amt = textValue1 * textValue2;
+        res = (amt*textValue3)/100;
+        dm = amt-res;
+        console.log(dm);
+        $("#id_Total_Amount").val(dm);
+    });
+
+</script>

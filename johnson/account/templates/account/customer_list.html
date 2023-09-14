@@ -1,0 +1,39 @@
+{% extends 'account/customerbase.html' %}
+{% load static %}
+{% block content %}
+<table id="example" class="display table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Retailer Code</th>
+            <th>Retailer Name</th>
+            <th>Retailer Group</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Email</th>
+            <th>Action</th>
+
+        </tr>
+
+
+    </thead>
+    <tbody>
+    {% include 'account/partial_customer_list.html' %}
+    </tbody>
+
+
+</table>
+<div class="modal fade" id="modal-book">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#id_zone").select2({
+            dropdownParent: $("modal-book")
+        });
+    });    
+</script>    
+{% endblock %}

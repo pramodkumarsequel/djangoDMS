@@ -1,0 +1,26 @@
+{% extends 'account/Hierarchy5/hierarchy5base.html' %}
+{% load static %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+        <tr>
+            <th style="width:50px;">
+                <div class="form-check custom-checkbox checkbox-primary check-lg me-3">
+                    <input type="checkbox" class="form-check-input" id="checkAll" value="">
+                    <label class="form-check-label" for="checkAll"></label>
+                </div>
+            </th> 
+            <th>S.No</th>
+            <th>Hierarchy1</th>
+            <th>Hierarchy2</th>
+            <th>Hierarchy3</th>
+            <th>Hierarchy4</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Action</th>  
+        </tr>       
+    </thead>  
+    {% include 'account/Hierarchy5/partial_hierarchy5_list.html' %}  
+</table>
+    
+{% endblock %}

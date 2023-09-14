@@ -1,0 +1,531 @@
+{% extends 'account/base.html' %} {% block title %}
+<title>::Opening Balance::</title>
+{% endblock %} {% load static %} {% block page-inner %} {% load crispy_forms_tags %} {% load bulma_tags %} {% block extracss %}
+<link rel="stylesheet" href='{% static "account/css/model.css" %}' />
+<link
+  href="{% static 'account/bulma/css/bulma-calendar.min.css' %}"
+  rel="stylesheet"
+/>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link
+  href="{% static 'account/bulma/js/bulma-calendar.min.js' %}"
+  rel="stylesheet"
+/>
+<style>
+  .main_responsive {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+  table.dataTable thead > tr > th.sorting:before,
+  table.dataTable thead > tr > th.sorting:after,
+  table.dataTable thead > tr > th.sorting_asc:before,
+  table.dataTable thead > tr > th.sorting_asc:after,
+  table.dataTable thead > tr > th.sorting_desc:before,
+  table.dataTable thead > tr > th.sorting_desc:after,
+  table.dataTable thead > tr > th.sorting_asc_disabled:before,
+  table.dataTable thead > tr > th.sorting_asc_disabled:after,
+  table.dataTable thead > tr > th.sorting_desc_disabled:before,
+  table.dataTable thead > tr > th.sorting_desc_disabled:after,
+  table.dataTable thead > tr > td.sorting:before,
+  table.dataTable thead > tr > td.sorting:after,
+  table.dataTable thead > tr > td.sorting_asc:before,
+  table.dataTable thead > tr > td.sorting_asc:after,
+  table.dataTable thead > tr > td.sorting_desc:before,
+  table.dataTable thead > tr > td.sorting_desc:after,
+  table.dataTable thead > tr > td.sorting_asc_disabled:before,
+  table.dataTable thead > tr > td.sorting_asc_disabled:after,
+  table.dataTable thead > tr > td.sorting_desc_disabled:before,
+  table.dataTable thead > tr > td.sorting_desc_disabled:after {
+    display: none;
+  }
+  .main_responsive div#example_filter,
+  .main_responsive div#example_length,
+  .main_responsive div#example_info,
+  .main_responsive div#example_paginate {
+    display: none;
+  }
+  @media screen and (max-width: 767px) {
+    table.dataTable thead > tr > td.sorting label {
+      font-size: 12px;
+    }
+  }
+  table.dataTable td.dataTables_empty {
+    text-align: center;
+    display: none;
+  }
+</style>
+{% endblock %}
+
+<!-- CSS only -->
+
+<link
+  rel="stylesheet"
+  href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.12.1/css/dataTables.jqueryui.min.css"
+/>
+<div class="page-inner">
+  <div class="page-title">
+    <h3 class="breadcrumb-header" style="color: white">OPENING BALANCE</h3>
+  </div>
+  <div id="main-wrapper">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="panel panel-white">
+          <div class="panel-body">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <div class="alert alert-success" id="success-alert"  role="alert">
+                            <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }}</li>
+
+                        </div>
+
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            <div class="form-row">
+                <form
+                    method="post"
+                    id="disform"
+                    data-dis-url="{% url 'ajax_load_disname' %}"
+                    class="">
+                    <div class="card white-ter">
+                    <div class="hero-body">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-4 mb-0">
+                                    {{form.Distributor_Code|as_crispy_field}}
+                            </div>
+                            <div class="form-group col-md-4 mb-0">
+                              {% include 'account/sales/sales_dis_name_field.html' %}
+                           </div> 
+                            <div class="form-group col-md-4 mb-0">
+                                {{form.Date|as_crispy_field}}
+                            </div> 
+                        </div>
+
+                        <div class="main_responsive">
+
+
+                            <table id="example" class="table-responsive" data-base-url="{% url 'load_base_uom' %}" data-itm-url="{% url 'ajax_load_itemname' %}">
+                                <tbody>
+                                <thead>
+                                <tr>
+                                    <th>ITEM CODE</th>
+                                    <th>ITEM NAME</th>
+                                    <th>QTY</th>
+                                    <th>BASE UOM</th>
+                                    <th>RATE</th>
+                                    <th>DISCOUNT</th>
+                                    <th>SERIAL NO</th>
+                                    <th>AMOUNT</th>
+                                    <th>ACTION</th>
+
+                                </tr>
+                                {{ formset.management_form }}
+                                {% for form in formset %}
+
+                                <tr class="form-row">  
+                                    <td>
+                                      <div id="div_id_form-0-Item_Code" class="form-group">
+                                        <label for="id_form-0-Item_Code" class="requiredField">
+                                          Item Code<span class="asteriskField">*</span>
+                                        </label>
+                                        <div>
+                                          <select
+                                            name="form-0-Item_Code"
+                                            class="select form-control Item_Code"
+                                            id="id_form-0-Item_Code">
+                                            <option value="" selected="">---------</option>
+                                            {% for itm in items %}
+                                              <option value="{{itm.id}}">{{itm.Item_Code}}</option>
+                                            {% endfor %}  
+                                          </select>
+                                        </div>
+                                      </div>
+                                    </td>
+
+                                    <td>
+                                      <div id="div_id_form-0-Item_Name" class="form-group">
+                                        <label for="id_form-0-Item_Name" class=""> Item Name </label>
+                                        <div>
+                                          <input
+                                            type="text"
+                                            name="form-0-Item_Name"
+                                            maxlength="50"
+                                            class="textinput textInput form-control ItemName"
+                                            id="id_form-0-Item_Name"
+                                            required=""
+                                            disabled=""
+                                          />
+                                        </div>
+                                      </div>
+                                    </td>
+
+                                    <td>
+                                      <div id="div_id_form-0-Quantity" class="form-group">
+                                        <label for="id_form-0-Quantity" class="requiredField">
+                                          Quantity<span class="asteriskField">*</span>
+                                        </label>
+                                        <div>
+                                          <input
+                                            type="number"
+                                            name="form-0-Quantity"
+                                            min="0"
+                                            class="numberinput form-control Quantity"
+                                            id="id_form-0-Quantity"
+                                          />
+                                        </div>
+                                      </div>
+                                    </td>
+                                        <td>
+                                          <div id="div_id_form-0-base_uom" class="form-group">
+                                            <label for="id_form-0-base_uom" class="requiredField">
+                                              Base UOM<span class="asteriskField">*</span>
+                                            </label>
+                                            <div>
+                                              <input
+                                                type="text"
+                                                name="form-0-base_uom"
+                                                maxlength="50"
+                                                class="textinput textInput form-control UOM"
+                                                id="id_form-0-base_uom"
+                                              />
+                                            </div>
+                                          </div>
+                                        </td>
+                                    <td>
+                                      <div id="div_id_form-0-Rate" class="form-group">
+                                        <label for="id_form-0-Rate" class="requiredField">
+                                          Rate<span class="asteriskField">*</span>
+                                        </label>
+                                        <div>
+                                          <input
+                                            type="number"
+                                            name="form-0-Rate"
+                                            step="0.01"
+                                            class="numberinput form-control Rate"
+                                            id="id_form-0-Rate"
+                                          />
+                                        </div>
+                                      </div>
+                                    </td>
+
+                                    <td>
+                                      <div id="div_id_form-0-Discount" class="form-group">
+                                        <label for="id_form-0-Discount" class="requiredField">
+                                          Sales Discount(%)<span class="asteriskField">*</span>
+                                        </label>
+                                        <div>
+                                          <input
+                                            type="number"
+                                            name="form-0-Discount"
+                                            min="0"
+                                            class="numberinput form-control Discount"
+                                            id="id_form-0-Discount"
+                                          />
+                                        </div>
+                                      </div>
+                                    </td>
+
+                                    <td>
+                                      <div id="div_id_form-0-sr" class="form-group">
+                                        <label for="id_form-0-sr" class=""> Serial_No </label>
+                                        <div>
+                                          <input
+                                            type="text"
+                                            name="form-0-sr"
+                                            maxlength="50"
+                                            class="textinput textInput form-control"
+                                            id="id_form-0-sr"
+                                          />
+                                        </div>
+                                      </div>
+                                    </td>
+
+                                    <td>
+                                      <div id="div_id_form-0-Total_Amount" class="form-group">
+                                        <label for="id_form-0-Total_Amount" class="requiredField">
+                                          Total Amount<span class="asteriskField">*</span>
+                                        </label>
+                                        <div>
+                                          <input
+                                            type="number"
+                                            name="form-0-Total_Amount"
+                                            value="0"
+                                            step="0.01"
+                                            class="numberinput form-control Amount"
+                                            id="id_form-0-Total_Amount"
+                                          />
+                                        </div>
+                                      </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="input-group-append">
+                                            <button class="button btn-success is-small add-form-row">+</button>&nbsp;
+                                            <button class="button btn-danger is-small remove-form-row">
+                                                -
+                                            </button>&nbsp;
+
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                                </thead>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row spacer">
+                        <div class="col-4 offset-2">
+                            <button
+                            type="submit"
+                            class="btn btn-primary"
+                            style="
+                                margin: 1rem;
+                                float: right;
+                                width: 150px;
+                                border-radius: 25px;
+                                font-size: large;
+                                border-bottom-style: outset;
+                            "
+                            >
+                            Save
+                            </button>
+                        </div>
+                        </div>
+                        <br />
+                    </div>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<style>
+    .panel {
+      padding: 25px;
+      border-color: #e6e8eb;
+      background-color: ghostwhite;
+    }
+    h3 {
+      background-color: #393997;
+      color: white;
+      padding: 10px;
+      border-bottom-style: groove;
+    }
+    .btn {
+      border-radius: 4px;
+      padding: 5px 16px;
+      box-shadow: none !important;
+      margin: 2px;
+    }
+
+    .label,
+    label {
+      font-weight: 400;
+      color: black;
+    }
+    .modal-footer,
+    .modal-header {
+      padding: 25px;
+      border: none;
+      background-color: #00695c;
+    }
+    table.dataTable thead th,
+    table.dataTable tfoot th {
+      font-weight: 500;
+      background-color: #0d47a1;
+      color: white;
+    }
+    .alert-success {
+      color: #020101;
+      background-color: #4bbb71;
+      border-color: #30B661;
+  }
+</style>
+{% block extrajs %}
+<script src="//cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.jqueryui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+      $("#example").DataTable();
+    });
+    $(document).ready(function() {
+      $('#id_Distributor_Code').select2();
+  });
+</script>
+<script type="text/javascript">
+    $('.table-responsive input').on("input", function () {
+        var total = []
+        var $tr = $(this).closest('tr');
+        var textValue1 = $("input.Rate", $tr).val();
+        var textValue2 = $('input.Quantity', $tr).val();
+        var textValue3 = $('input.Discount', $tr).val();
+        amt = textValue1 * textValue2;
+        dis = amt*textValue3/100;
+        amt=amt-dis
+        console.log(amt);
+        $('.Amount', $tr).val(amt);
+        calc_total();
+    });
+</script>
+<script>
+    $(".Item_Code").change(function () {
+      var url = $("#example").attr("data-itm-url");  // get the url of the `
+      var distributorId = $(this).val();
+    var $tr = $(this).closest('tr');
+           console.log(distributorId)
+      $.ajax({                  // initialize an AJAX request
+        url: url,                    // set the url of the request
+        data: {
+          'items': distributorId      // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the  view function
+          $(".ItemName", $tr).val(data.item_name);
+          // replace the contents of the with the data that came from the server
+        }
+      });
+  
+    });
+    function myFunction(e) {
+    document.getElementById("myText").value = e.target.value
+  }
+</script>
+<script>
+  $(".Item_Code").change(function () {
+    var url = $("#example").attr("data-base-url");  // get the url of the `
+    var distributorId = $(this).val();
+  var $tr = $(this).closest('tr');
+         console.log(distributorId)
+    $.ajax({                  // initialize an AJAX request
+      url: url,                    // set the url of the request
+      data: {
+        'items': distributorId      // add the country id to the GET parameters
+      },
+      success: function (data) {   // `data` is the return of the  view function
+        $(".UOM", $tr).val(data.uom);  // replace the contents of the with the data that came from the server
+      }
+    });
+
+  });
+  function myFunction(e) {
+  document.getElementById("myText").value = e.target.value
+}
+</script>
+
+<script type="text/javascript">
+    function updateElementIndex(el, prefix, ndx) {
+      var id_regex = new RegExp("(" + prefix + "-\\d+)");
+      var replacement = prefix + "-" + ndx;
+      if ($(el).attr("for"))
+        $(el).attr("for", $(el).attr("for").replace(id_regex, replacement));
+      if (el.id) el.id = el.id.replace(id_regex, replacement);
+      if (el.name) el.name = el.name.replace(id_regex, replacement);
+    }
+    function cloneMore(selector, prefix) {
+      var newElement = $(selector).clone(true);
+      console.log(newElement);
+      var total = $("#id_" + prefix + "-TOTAL_FORMS").val();
+      newElement
+        .find(":input:not([type=button]):not([type=submit]):not([type=reset])")
+        .each(function () {
+          var name = $(this).attr("name");
+          if (name) {
+            name = name.replace("-" + (total - 1) + "-", "-" + total + "-");
+            var id = "id_" + name;
+            $(this).attr({ name: name, id: id }).val("").removeAttr("checked");
+          }
+        });
+      newElement.find("label").each(function () {
+        var forValue = $(this).attr("for");
+        if (forValue) {
+          forValue = forValue.replace(
+            "-" + (total - 1) + "-",
+            "-" + total + "-"
+          );
+          $(this).attr({ for: forValue });
+        }
+      });
+      total++;
+      $("#id_" + prefix + "-TOTAL_FORMS").val(total);
+      $(selector).after(newElement);
+      //var conditionRow = $('.form-row:not(:last)');
+      //conditionRow.find('.button.add-form-row')
+      return false;
+    }
+    function deleteForm(prefix, btn) {
+      debugger;
+      var total = parseInt($("#id_" + prefix + "-TOTAL_FORMS").val());
+      if (total > 1) {
+        btn.closest(".form-row").remove();
+        var forms = $(".form-row");
+        $("#id_" + prefix + "-TOTAL_FORMS").val(forms.length);
+        for (var i = 0, formCount = forms.length; i < formCount; i++) {
+          $(forms.get(i))
+            .find(":input")
+            .each(function () {
+              updateElementIndex(this, prefix, i);
+            });
+        }
+      }
+      return false;
+    }
+    $(document).on("click", ".add-form-row", function (e) {
+      e.preventDefault();
+      cloneMore("table tr:last", "form");
+      return false;
+    });
+    $(document).on("click", ".remove-form-row", function (e) {
+      e.preventDefault();
+      deleteForm("form", $(this));
+      return false;
+    });
+  </script>
+<script>
+    $("#id_Distributor_Code").change(function () {
+    debugger;
+      var url = $("#disform").attr("data-dis-url");  // get the url of the `
+      var distributorId = $(this).val();
+           console.log(distributorId)
+
+      $.ajax({                  // initialize an AJAX request
+        url: url,                    // set the url of the request
+        data: {
+          'Distributors': distributorId      // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the  view function
+         debugger;
+          $("#id_Distributor_Name").val(data.distributor_name);  // replace the contents of the with the data that came from the server
+        }
+      });
+
+    });
+
+    function myFunction(e) {
+    document.getElementById("myText").value = e.target.value
+}
+</script>
+<script>
+  $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+      $("#success-alert").slideUp(500);
+  });
+</script> 
+
+  {% endblock %} {% endblock %}
+

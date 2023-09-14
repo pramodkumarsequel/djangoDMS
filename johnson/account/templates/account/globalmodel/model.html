@@ -1,0 +1,29 @@
+                                      <!-- Button trigger modal -->
+                                      <a button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Import</button>
+                                      </a>
+                                      <!-- Modal -->
+                                      <div class="modal fade" id="exampleModalCenter">
+                                          <div class="modal-dialog modal-dialog-centered" role="document">
+                                              <div class="modal-content">
+                                                  <div class="modal-header" style="background-color:primary;">
+                                                      <h5 class="modal-title" style="color:white; text-align:center;">Import Csv File</h5>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                      </button>
+                                                  </div>
+                                                  <form method="post" action="" id="excel_file_form" enctype="multipart/form-data">{% csrf_token %}
+                                                  <div class="modal-body">
+                                                      <div class="input-group mb-3">
+                                                          <div class="form-file">
+                                                              <input type="file" name="excel_file" class="form-file-input form-control">
+                                                          </div>
+                                                          <button class="btn btn-primary btn-sm me-1" type="submit">upload</button>
+                                                          <button title="Download Import Sample & Format" class="btn btn-primary btn-sm" type="submit"><i class="bi bi-info-circle-fill"></i></button>
+                                                        
+                                                      </div>
+                                                  </div>
+                                              </form>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  
+                            </a>  

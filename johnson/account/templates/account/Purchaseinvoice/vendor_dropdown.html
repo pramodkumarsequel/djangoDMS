@@ -1,0 +1,21 @@
+<div id="div_id_Vendor_Name" class="form-group">
+  <label for="id_Vendor_Name" class="requiredField">
+    Billing Entity<span class="asteriskField">*</span>
+  </label>
+
+  <div>
+    <select
+      name="Vendor_Name"
+      class="select form-control"
+      required=""
+      id="id_Vendor_Name"
+    >
+      <option value="" selected="">---------</option>
+        {% for vl in mrns %}
+      <option value="{{vl.billing_entity}}">
+        {{vl.billing_entity}}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>

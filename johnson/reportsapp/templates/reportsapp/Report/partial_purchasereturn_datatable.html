@@ -1,0 +1,44 @@
+{% extends 'reportsapp/Report/reportbase.html' %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+    <tr>
+    {% for fld in fields %}
+        <th>{{fld.verbose_name }}</th>
+    {% endfor %}    
+    </tr>
+    </thead>
+    {% for sale in queryset %}
+        {% for r in sale.detailsofpurchasereturn_set.all %}
+     <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{sale.Distributors.Distributor_Name|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Bill_Date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.pi_date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Supplier_Invoice_No|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.SAP_Order_No|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.SAP_Order_Date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_GST|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.SGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.CGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.IGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Vendor_Name|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.total_discount_amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_Inventory_Amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_Invoice_Amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{r.id|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.entity_id|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.Item_Name|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.Purchases_Return_Quantity|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.purchase_uom|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.Purchase_Rate|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.Purchase_Product_Discount|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.Purchases_Serial_No|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.Total_Amount|default_if_none:"&nbsp;"}}</td>
+        <td>{{r.updated_on}}</td>
+        <td>{{r.created_on}}</td>
+     </tr>
+        {% endfor %}
+     {% endfor %}
+</table>
+{% endblock %}    

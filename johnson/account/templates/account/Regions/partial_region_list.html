@@ -1,0 +1,34 @@
+{% if regions %}
+{% for region in regions %}
+  <tr id="3">
+      <td>
+        <div class="form-check custom-checkbox checkbox-primary check-lg me-3">
+          <input name="user_id[]" type="checkbox" class="form-check-input" value="3">
+          <label class="form-check-label" for="checkbox-3"></label>
+        </div>
+      </td>
+    <td>{{forloop.counter}}</td>
+    <td><span class="label label-primary">{{region.zone}}</span></td>
+    <td>{{region.Region_Name}}</td>
+    <td>
+      <div class="form-check form-switch">
+        <input class="form-check-input" data-item-id="{{ region.id }}" type="checkbox" value="{{region.isactive}}" role="switch" id="flexSwitchCheckDefault" {% if region.isactive %}checked{% endif %}>
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+    </td> 
+    <td>
+        <div class="sweetalert">
+          <div class="d-flex">
+            <a href="#" class="btn btn-secondary shadow btn-xs sharp me-1" title="Permissions"><i class="fa fa-shield"></i></a>  
+            <a href="{% url 'region-update' region.id %}" class="btn btn-primary shadow btn-xs sharp me-1" title="Edit"><i class="fa fa-pencil"></i></a>
+            <a href="{% url 'region-delete' region.id %}" class="btn btn-danger shadow btn-xs sharp sweet-success-cancel"  title="Delete"><i class="fa fa-trash"></i></a>    
+          </div>  
+        </div>  
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="10" class="text-center bg-warning">No Region</td>
+  </tr>
+{% endfor %}
+{% endif %}

@@ -1,0 +1,37 @@
+{% load crispy_forms_tags %}
+<div class="row">   
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Distributor_Code|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Distributor_Name|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">{{form.zones|as_crispy_field}}</div>
+    <div class="form-group col-md-6 mb-0">{{ form.region|as_crispy_field }}</div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">{{ form.State|as_crispy_field }}</div>
+    <div class="form-group col-md-6 mb-0">{{ form.City|as_crispy_field }}</div>
+</div>
+  <div class="row">
+    <div class="form-group col-md-6 mb-0">{{ form.PinCode|as_crispy_field }}</div>
+    <div class="form-group col-md-6 mb-0">{{ form.Email_ID|as_crispy_field }}</div>
+</div>
+<div class="row">
+    <div class="form-group col-md-12 mb-0">{{ form.Address | as_crispy_field }}</div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">{{form.gstin|as_crispy_field }}</div>
+    <div class="form-group col-md-6 mb-0">{{form.DL_NO|as_crispy_field }}</div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">{{form.pan|as_crispy_field }}</div>
+    <div class="form-group col-md-6 mb-0">{{form.DL_NO_Valid_UPTO|as_crispy_field }}</div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">{{form.Contact_Person_Name|as_crispy_field }}</div>
+    <div class="'form-group col-md-6 mb-0">{{form.Contact_Number|as_crispy_field }}</div>
+</div>
+

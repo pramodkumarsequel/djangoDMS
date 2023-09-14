@@ -1,0 +1,25 @@
+{% extends 'account/Item/itembase.html' %}
+{% load static %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+        <tr>
+            <th style="width:50px;">
+                <div class="form-check custom-checkbox checkbox-primary check-lg me-3">
+                    <input type="checkbox" class="form-check-input" id="checkAll" value="">
+                    <label class="form-check-label" for="checkAll"></label>
+                </div>
+            </th> 
+            <th>S.No</th>
+            <th>Item Name</th>
+            <th>Item Code</th>
+            <th>Batch Enabled</th>
+            <th>Base UOM</th>
+            <th>Principal Company</th>
+            <th>Status</th>
+            <th>Action</th>  
+        </tr>       
+    </thead>  
+    {% include 'account/Item/partial_item_list.html' %}  
+</table>    
+{% endblock %}

@@ -1,0 +1,10 @@
+   .modal-footer, .modal-header {
+    padding: 25px;
+    border: none;
+    background-color: #00695c;
+}
+hr{
+    border: revert;
+    border-block-color: black;
+    border-block-style: revert;
+    }

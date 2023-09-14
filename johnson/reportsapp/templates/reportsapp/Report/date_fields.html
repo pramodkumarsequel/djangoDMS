@@ -1,0 +1,4 @@
+<option value="">--------SELECT--------</option>
+{% for field in date_fields %}
+<option value="{{field.name}}">{{field.verbose_name}}</option>
+{% endfor %}

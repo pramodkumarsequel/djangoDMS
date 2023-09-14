@@ -1,0 +1,4 @@
+<option value="">----SELECT-----</option>
+{% for d in sorders %}
+<option value="{{ d.sales_order_no.id }}">{{d.sales_order_no.sales_order_no}}</option>
+{% endfor %}

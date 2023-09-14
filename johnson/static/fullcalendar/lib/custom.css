@@ -1,0 +1,107 @@
+h3 {
+    background-color: lightgrey;
+    margin-left: 5px;
+    margin-top: 50px;
+    padding: inherit;
+    text-align: left;
+    height: 50px;
+    margin-right: 25px;
+    border-left: groove;
+    
+}
+.calendar tr, .calendar td {
+    border: 1px solid black;
+  }
+
+#calendar {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border: ridge;
+    border-width: 5px;
+    padding-bottom: 10px;
+}
+
+h4 {
+    border: groove;
+    margin: 20px;
+    padding: 15px;
+    background-color: whitesmoke;
+
+
+
+}
+/* .modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+   display: none;
+    overflow: hidden;
+
+}
+
+.show {
+    display: inline-block;
+  
+} */
+
+
+
+.modal-header {
+    padding: 25px;
+    border: none;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    background-color: darkcyan;
+ 
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    color: white;
+    font-size: medium;
+}
+
+.modal-body {
+    padding: auto;
+    margin: 20px;
+    padding: auto;
+    border: ridge;
+}
+
+
+.btn-danger {
+    border-color: #ec5e69!important;
+    background-color: #ec5e69!important;
+    transition: all .2s ease-in-out;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+    border: groove;
+}
+
+.btn {
+    border-color:darkcyan;
+    background-color: darkcyan;
+    transition: all .2s ease-in-out;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+    border: groove;
+    color: ghostwhite;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

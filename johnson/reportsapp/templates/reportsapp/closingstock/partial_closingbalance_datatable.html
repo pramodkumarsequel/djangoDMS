@@ -1,0 +1,32 @@
+{% extends 'reportsapp/closingstock/closingstockbase.html' %}
+{% load mathfilters %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+    <tr>
+    {% include 'reportsapp/closingstock/partial_closing_header.html' %}   
+    </tr>
+    </thead>
+    {% for item in sales %}
+     <tr>
+         <td>{{forloop.counter}}</td>
+         <td>{{item.id}}</td>
+        <td>{{item.Item_Code__Hierarchy1__Name|default_if_none:"0" }}</td>
+        <td>{{item.Item_Code__Hierarchy2__Name|default_if_none:"0" }}</td>
+        <td>{{item.Item_Code__Hierarchy3__Name|default_if_none:"0" }}</td>
+        <td>{{item.Item_Code__Hier4__Name|default_if_none:"0" }}</td>
+        <td>{{item.Item_Code__Hier5__Name|default_if_none:"0" }}</td>
+        <td>{{item.Item_Code__Item_Name}}</td>
+        <td>{{item.Quantity|default_if_none:"0"}}</td>
+        <td>{{item.Item_Code__detailofpurchase__Purchases_Quantity|default_if_none:"0"}}</td>
+        {% comment %} <td>{{item.Item_Code__receipt_note_detail__Quantity|default_if_none:"0"}}</td> {% endcomment %}
+        <td>{{item.Item_Code__detailsofpurchasereturn__Purchases_Return_Quantity|default_if_none:"0"}}</td>
+        <td>{{item.Item_Code__sales_detail__Sales_Quantity|default_if_none:"0"}}</td>
+        {% comment %} <td>{{item.Item_Code__delivery_note_details__Quantity|default_if_none:"0"}}</td> {% endcomment %}
+        <td>{{item.Item_Code__sales_return_detail__Sales_Quantity|default_if_none:"0"}}</td>
+        <td>{{item.closing_balance}}</td>
+
+     </tr>
+     {% endfor %}
+</table>
+{% endblock %}    

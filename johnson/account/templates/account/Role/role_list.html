@@ -1,0 +1,19 @@
+{% extends 'account/Role/rolebase.html' %}
+{% load static %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+        <thead style="background-color:beige;">
+        <tr>
+            <th scope="col">Role Name</th>
+            <th scope="col">User Count</th>
+            <th scope="col">Perms Count</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% include 'account/Role/partial_role_list.html' %}
+        </tbody>
+</table>
+
+
+{% endblock %}    

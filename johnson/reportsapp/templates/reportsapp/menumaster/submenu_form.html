@@ -1,0 +1,409 @@
+<form action="" method="post">
+  <div class="row">
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        <div id="div_id_MTYPE" class="form-group">
+          <label for="id_MTYPE" class=""> Menu Type </label>
+
+          <div>
+            <input
+              type="text"
+              name="MTYPE"
+              value="New"
+              maxlength="20"
+              class="textinput textInput form-control"
+              disabled=""
+              id="id_MTYPE"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        <div id="div_id_MenuName" class="form-group">
+          <label for="id_MenuName" class="requiredField">
+            Menu Name<span class="asteriskField">*</span>
+          </label>
+
+          <div>
+            <input
+              type="text"
+              name="MenuName"
+              maxlength="50"
+              class="textinput textInput form-control"
+              required=""
+              id="id_MenuName"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        <div id="div_id_Dord" class="form-group">
+          <label for="id_Dord" class=""> Display Order </label>
+
+          <div>
+            <input
+              type="number"
+              name="Dord"
+              class="numberinput form-control"
+              id="id_Dord"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        <div class="form-group">
+          <div id="div_id_IsMobile" class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              name="IsMobile"
+              class="checkboxinput custom-control-input"
+              id="id_IsMobile"
+            />
+
+            <label for="id_IsMobile" class="custom-control-label">
+              IsMobile
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        <div id="div_id_Image" class="form-group">
+          <label for="id_Image" class=""> Image </label>
+
+          <div class="mb-2">
+            <div class="form-control custom-file" style="border: 0">
+              <input
+                type="file"
+                name="Image"
+                class="custom-file-input"
+                accept="image/*"
+                id="id_Image"
+              />
+              <label class="custom-file-label text-truncate" for="id_Image"
+                >---</label
+              >
+              <script type="text/javascript" id="script-id_Image">
+                document
+                  .getElementById("script-id_Image")
+                  .parentNode.querySelector(".custom-file-input").onchange =
+                  function (e) {
+                    var filenames = "";
+                    for (let i = 0; i < e.target.files.length; i++) {
+                      filenames += (i > 0 ? ", " : "") + e.target.files[i].name;
+                    }
+                    e.target.parentNode.querySelector(
+                      ".custom-file-label"
+                    ).textContent = filenames;
+                  };
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          style="width: 8rem; float: left"
+          name="rootmenu"
+          onclick="submitForms()"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_Pmenu" class="form-group">
+        <label for="id_Pmenu" class="requiredField">
+          Select Parent Menu<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <select
+            name="Pmenu"
+            class="select form-control"
+            required=""
+            id="id_Pmenu"
+          >
+            <option value="" selected="">---------</option>
+            {% for menu in menus %}
+            <option value="{{menu.id}}">{{menu.MenuName}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_pagelinktype" class="form-group">
+        <label for="id_pagelinktype" class="requiredField">
+          Page Link Type<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <select
+            name="pagelinktype"
+            class="select form-control"
+            id="id_pagelinktype"
+          >
+            <option value="Select">---Select---</option>
+            {% pglink in pagelinktypes %}
+            <option value="Static">Static</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_pagelink" class="form-group">
+        <label for="id_pagelink" class="requiredField">
+          Page Link<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <select name="pagelink" class="select form-control" id="id_pagelink">
+            <option value="Select">---Select---</option>
+            {% for pglink in pagelinks %}
+            <option value="{{pglink.id}}">{{pglink.pagelink}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_MenuName" class="form-group">
+        <label for="id_MenuName" class="requiredField">
+          Menu Name<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <input
+            type="text"
+            name="MenuName"
+            maxlength="50"
+            class="textinput textInput form-control"
+            required=""
+            id="id_MenuName"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_Dord" class="form-group">
+        <label for="id_Dord" class="requiredField">
+          Display Order<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <input
+            type="number"
+            name="Dord"
+            class="numberinput form-control"
+            required=""
+            id="id_Dord"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_Image" class="form-group">
+        <label for="id_Image" class=""> Image </label>
+
+        <div>
+          <input
+            type="file"
+            name="Image"
+            accept="image/*"
+            class="clearablefileinput form-control-file"
+            id="id_Image"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4 mb-0">
+      <div class="form-group">
+        <div id="div_id_IsMobile" class="form-check">
+          <input
+            type="checkbox"
+            name="IsMobile"
+            class="checkboxinput form-check-input"
+            id="id_IsMobile"
+          />
+
+          <label for="id_IsMobile" class="form-check-label"> Is Mobile </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="width: 8rem; float: right"
+        name="submenu"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_Pmenu" class="form-group">
+        <label for="id_Pmenu" class="requiredField">
+          Select Parent Menu<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <select
+            name="Pmenu"
+            class="select form-control"
+            required=""
+            id="id_Pmenu"
+          >
+            <option value="" selected="">---------</option>
+            {% for pmenu in menus %}
+            <option value="{{pmenu.id}}">{{pmenu.MenuName}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_pagelinktype" class="form-group">
+        <label for="id_pagelinktype" class="requiredField">
+          Page Link Type<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <select
+            name="pagelinktype"
+            class="select form-control"
+            id="id_pagelinktype"
+          >
+            <option value="Select">---Select---</option>
+            {% for pglinktype in pagelinktypes %}
+            <option value="{{pglinktype.id}}">{{pglinktype}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_pagelink" class="form-group">
+        <label for="id_pagelink" class="requiredField">
+          Page Link<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <select name="pagelink" class="select form-control" id="id_pagelink">
+            <option value="Select">---Select---</option>
+            {% for menu in menus %}
+            <option value="{{menu.id}}">{{menu.MenuName}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_MenuName" class="form-group">
+        <label for="id_MenuName" class="requiredField">
+          Menu Name<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <input
+            type="text"
+            name="MenuName"
+            maxlength="50"
+            class="textinput textInput form-control"
+            required=""
+            id="id_MenuName"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      <div id="div_id_Dord" class="form-group">
+        <label for="id_Dord" class="requiredField">
+          Display Order<span class="asteriskField">*</span>
+        </label>
+
+        <div>
+          <input
+            type="number"
+            name="Dord"
+            class="numberinput form-control"
+            required=""
+            id="id_Dord"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      <div class="form-group">
+        <div id="div_id_IsMobile" class="form-check">
+          <input
+            type="checkbox"
+            name="IsMobile"
+            class="checkboxinput form-check-input"
+            required=""
+            id="id_IsMobile"
+          />
+
+          <label for="id_IsMobile" class="form-check-label requiredField">
+            Is Mobile<span class="asteriskField">*</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="div_id_pagelinktype" class="form-group">
+  <label for="id_pagelinktype" class="requiredField">
+    Page Link Type<span class="asteriskField">*</span>
+  </label>
+
+  <div>
+    <select
+      name="pagelinktype"
+      class="select form-control"
+      id="id_pagelinktype"
+    >
+      <option value="Select">---Select---</option>
+
+      <option value="Static">Static</option>
+
+      <option value="Master">Master</option>
+
+      <option value="Document">Document</option>
+
+      <option value="Reports">Reports</option>
+
+      <option value="DReport">DReport</option>
+
+      <option value="Calender">Calender</option>
+    </select>
+  </div>
+</div>

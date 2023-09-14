@@ -1,0 +1,13 @@
+<div id="div_id_form-0-items" class="form-group">
+    <label for="id_form-0-items" class="requiredField">
+      Item Code<span class="asteriskField">*</span>
+    </label>
+    <div>
+      <select name="form-0-items" class="select form-control Item_Code" id="id_form-0-items">
+        <option value="" selected="">---------</option>
+        {% for d in obj %}
+            <option value="{{ d.items_id}}">{{ d.items }}</option>
+        {% endfor %}    
+      </select>
+    </div>
+</div>

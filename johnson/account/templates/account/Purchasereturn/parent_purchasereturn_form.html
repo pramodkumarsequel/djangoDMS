@@ -1,0 +1,54 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-3 mb-0">
+        {{form.pi_no|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-3 mb-0">
+        {{form.pi_date|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-3 mb-0">
+        {{form.SAP_Order_No|as_crispy_field}}
+    </div>   
+    <div class="form-group col-md-3 mb-0">
+        {{form.Bill_Date|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+        {{form.Vendor_Name|as_crispy_field}}
+    </div>  
+    <div class="form-group col-md-3 mb-0">
+        {{form.Supplier_Invoice_No|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-3 mb-0">
+        {{form.SAP_Order_Date|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.Distributors|as_crispy_field}}
+    </div>   
+    <div class="form-group col-md-6 mb-0">
+        {{form.distributor_name|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{form.gst_type|as_crispy_field}}
+    </div>  
+    <div class="form-group col-md-3 mb-0">
+        {{form.SGST_AMOUNT|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-3 mb-0">
+        {{form.CGST_AMOUNT|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-3 mb-0">
+        {{form.Total_GST|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{form.total_discount_amount|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{form.Total_Inventory_Amount|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{form.Total_Invoice_Amount|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{form.warehouse|as_crispy_field}}
+    </div>
+</div>    

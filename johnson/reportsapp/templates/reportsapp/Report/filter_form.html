@@ -1,0 +1,43 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="col-lg-2 col-xl-2">
+        <div class="mb-3">
+         {{form.Document_Type|as_crispy_field}}
+        </div>
+    </div>
+    <div class="col-lg-2 col-xl-2">
+        <div class="mb-3">
+            {% include 'reportsapp/fields_dropdown_list_options.html' %}
+        </div>
+    </div>
+    <div class="col-lg-2 col-xl-2">
+        <div class="mb-3">
+            {{form.value|as_crispy_field}}
+        </div>
+    </div>
+    <div class="col-lg-2 col-xl-2">
+        <div class="mb-3">
+             {{form.Date_Type|as_crispy_field}}
+        </div>    
+    </div>   
+    <div class="col-lg-2 col-xl-2">
+        <div class="mb-3">
+            {{form.From_Date|as_crispy_field}}
+        </div>    
+    </div>  
+    <div class="col-lg-2 col-xl-2">
+        <div class="mb-3">
+            {{form.To_Date|as_crispy_field}}
+        </div>    
+    </div>
+    <div class="col-lg-3 col-xl-3 float-right;">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary w-100 mb-2"><i class="fa-solid fa-magnifying-glass me-1"></i>Search</button>
+            </div>
+            <div class="col-md-6">
+                <a href="javascript:void(0);" type="button" class="btn light btn-outline-primary clear-user-filter w-100">Clear</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% extends 'reportsapp/stockSummary/stocksummarybase.html' %}
+{% load mathfilters %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+    <tr>
+    {% include 'reportsapp/stockSummary/stocksummary_header_table.html' %}   
+    </tr>
+    </thead>
+    {% for stock in stocks %}
+     <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{stock.warehouse|default_if_none:"0"}}</td>
+        <td>{{stock.w_code|default_if_none:"0"}}</td>
+        <td>{{stock.item|default_if_none:"0"}}</td>
+        <td>{{stock.itm_code|default_if_none:"0"}}</td>
+        <th>{{stock.OP}}</th>
+        <td>{{stock.Mrn_Qty|default_if_none:"0"}}</td>
+        <td>{{stock.purchase_return_qty|default_if_none:"0"}}</td>
+        <td>{{stock.delivery_note_qty|default_if_none:"0"}}</td>
+        <td>{{stock.sale_return_qty|default_if_none:"0"}}</td>
+        <td>{{stock.closing_balance|default_if_none:"0"}}</td>
+        <td>{{stock.created_on|default_if_none:"0"}}</td>
+        <td>{{stock.updated_on|default_if_none:"0"}}</td>
+
+     </tr>
+     {% endfor %}
+</table>
+{% endblock %}    

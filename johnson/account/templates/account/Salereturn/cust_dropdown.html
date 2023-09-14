@@ -1,0 +1,4 @@
+<option value="">----SELECT-----</option>
+{% for d in cust_obj %}
+<option value="{{ d.Customers.id }}">{{d.Customers.Customer_Code}}</option>
+{% endfor %}

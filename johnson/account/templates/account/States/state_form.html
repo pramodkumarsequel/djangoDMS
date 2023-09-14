@@ -1,0 +1,12 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+      {{form.zone|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{form.region|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.State_Name|as_crispy_field}}
+    </div>        
+</div> 

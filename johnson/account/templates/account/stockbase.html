@@ -1,0 +1,176 @@
+{% extends 'account/base.html' %}
+{% block title %}
+<title>::Stock::</title>
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block page-inner %}
+{% load mathfilters %}
+<link rel="stylesheet"  href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.jqueryui.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header">STOCK MANAGEMENT SYSTEM</h3>
+    </div>
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <h3 class="breadcrumb-header" style="text-align:center;">Stock Statement Report</h3>
+                    <div class="panel-body">
+                         {% include 'account/messages.html' %}
+                        <form method="post">{% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-md-3 mb-0">
+                                    {{ form.item_name|as_crispy_field }}
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3 mb-0">
+                                    {{ form.start_date|as_crispy_field }}
+                                </div>
+                                <div class="form-group col-md-3 mb-0">
+                                    {{ form.end_date|as_crispy_field }}
+                                </div>
+                            </div>
+                             <button type="submit" class="btn btn-primary" style="float:center;">search</button>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <h3 class="breadcrumb-header" style="text-align:center;">Item Wise Stock Statement</h3>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                             <table id="example" class="display" style="width:100%">
+                                 <thead>
+                                            <tr>
+                                                <th>Item Group Level 1</th>
+                                                <th>Item Group Level 2</th>
+                                                <th>Item Group Level 3</th>
+                                                <th>Item Group Level 4</th>
+                                                <th>Item Group Level 5</th>
+                                                <th>Item Name</th>
+                                                <th>Opening Balance</th>
+                                                <th>Purchase Quantity</th>
+                                                <th>Purchase Return Quantity</th>
+                                                <th>Sales Quantity</th>
+                                                <th>Sales Return Quantity</th>
+                                                <th>Closing Balance</th>
+                                            </tr>
+                                 </thead>
+                                 <tbody>
+                                            {% for item in stock %}
+                                                <tr>
+                                                    <td>{{item.Item_Code__Hierarchy1__Name|default_if_none:"0" }}</td>
+                                                    <td>{{item.Item_Code__Hierarchy2__Name|default_if_none:"0" }}</td>
+                                                    <td>{{item.Item_Code__Hierarchy3__Name|default_if_none:"0" }}</td>
+                                                    <td>{{item.Item_Code__Hier4__Name|default_if_none:"0" }}</td>
+                                                    <td>{{item.Item_Code__Hier5__Name|default_if_none:"0" }}</td>
+                                                    <td>{{item.Item_Code__Item_Name}}</td>
+                                                    <td>{{item.Quantity|default_if_none:"0"}}</td>
+                                                    <td>{{item.Item_Code__detailofpurchase__Purchases_Quantity|default_if_none:"0"}}</td>
+                                                    <td>{{item.Item_Code__detailsofpurchasereturn__Purchases_Return_Quantity|default_if_none:"0"}}</td>
+                                                    <td>{{item.Item_Code__sales_detail__Sales_Quantity|default_if_none:"0"}}</td>
+                                                    <td>{{item.Item_Code__sales_return_detail__Sales_Quantity|default_if_none:"0"}}</td>
+                                                    <td>{{ item.Quantity | add:item.Item_Code__detailofpurchase__Purchases_Quantity | sub:item.Item_Code__sales_detail__Sales_Quantity }}</td>
+                                                </tr>
+                                             {% endfor %}
+
+                                </tbody>
+                             </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% comment %} 
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+        
+
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+    </div>
+</div>
+
+<style>
+    .panel {
+    padding: 25px;
+    border-color: #E6E8EB;
+    background-color: ghostwhite;
+}
+.breadcrumb-header {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(0,0,0,.6);
+    margin-bottom: 24px;
+    background-color: #0d47a1;
+    color: white;
+    padding: 1rem;
+
+}
+.btn {
+    border-radius: 4px;
+    padding: 5px 16px;
+    box-shadow: none!important;
+    margin: 2px;
+}
+.btn-primary {
+    border-color: #0070E0!important;
+    background-color: #0070E0!important;
+    transition: all .2s ease-in-out;
+    border-bottom: groove;
+    border-radius: 20px;
+    width: 10rem;
+    margin-top: 1.5rem;
+    font-size: initial;
+    margin-left: 3rem;
+}
+table.dataTable thead th, table.dataTable tfoot th {
+    font-weight: 500;
+    background-color: #0d47a1;
+    color: white;
+}
+</style>
+{% block extrajs %}
+<script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.jqueryui.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+
+
+<script>
+    $(document).ready( function () {
+    $('#example').DataTable({
+    dom:'Bfrtip',
+    buttons:[
+    'csvHtml5',
+    { extend: 'excelHtml5',
+            autoFilter: true,
+            sheetName: 'Exported data'},
+    'pdfHtml5',
+    'print'
+    ]
+    }
+    );
+} );
+</script>
+{% endblock %}
+{% endblock %}

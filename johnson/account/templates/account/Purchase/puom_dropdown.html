@@ -1,0 +1,5 @@
+<select name="form-0-p_uom" class="select form-control puom" id="id_form-0-p_uom">
+    {% for u in un %}
+    <option value="{{u.id}}" selected>{{u.purchase_uom}}</option>
+    {% endfor %}
+</select>

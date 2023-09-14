@@ -1,0 +1,35 @@
+{% if dbprices %}
+{% for dbprice in dbprices %}
+  <tr id="3">
+      <td>
+        <div class="form-check custom-checkbox checkbox-primary check-lg me-3">
+          <input name="user_id[]" type="checkbox" class="form-check-input" value="3">
+          <label class="form-check-label" for="checkbox-3"></label>
+        </div>
+      </td>
+    <td>{{forloop.counter}}</td>
+    <td><span class="label label-primary">{{dbprice.distributor.Distributor_Code}}</span></td>
+    <td>{{dbprice.item.Item_Code}}</td>
+    <td>{{dbprice.Rate}}</td>
+    <td>
+      <div class="form-check form-switch">
+        <input class="form-check-input" data-item-id="{{ dbprice.id }}" type="checkbox" value="{{dbprice.isactive}}" role="switch" id="flexSwitchCheckDefault" {% if dbprice.isactive %}checked{% endif %}>
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+    </td>
+    <td>
+        <div class="sweetalert">
+          <div class="d-flex">
+            <a href="#" class="btn btn-secondary shadow btn-xs sharp me-1" title="Permissions"><i class="fa fa-shield"></i></a>  
+            <a href="{% url 'dbprice-update' dbprice.id %}" class="btn btn-primary shadow btn-xs sharp me-1" title="Edit"><i class="fa fa-pencil"></i></a>
+            <a href="{% url 'dbprice-delete' dbprice.id %}" class="btn btn-danger shadow btn-xs sharp sweet-success-cancel"  title="Delete"><i class="fa fa-trash"></i></a>    
+          </div>  
+        </div>  
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="10" class="text-center bg-warning">No Dbprice</td>
+  </tr>
+{% endfor %}
+{% endif %}

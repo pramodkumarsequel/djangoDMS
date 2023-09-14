@@ -1,0 +1,114 @@
+{% extends 'account/base.html' %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock %}
+{% block sidebar %}
+{% endblock sidebar %}
+{% block page-header %}
+{% endblock page-header %}
+{% block page-inner %}
+{% load crispy_forms_tags %}
+<div class="page-inner">
+    <div class="page-title">
+        <nav class="navbar sticky-top navbar-light bg-light">
+            <div class="col-lg-3 col-md-6">
+                <form method="post">{% csrf_token %}
+                    {{ form|crispy }}
+
+                </form>
+            </div>
+
+        </nav>
+    </div>
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-white stats-widget">
+                    <div class="panel-body">
+                        {% for msg in messages %}
+                        <div class="alert alert-success" id="success-alert" role="alert">
+                            <button data-dismiss="alert" class="close" type="button">×</button>
+                            {{msg}}
+                        </div>
+                        {% endfor %}
+                        <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-pills" role="tablist">
+                                <li role="presentation" class="active"><a href="#tab25" role="tab"
+                                                                          data-toggle="tab">Need To Act()</a></li>
+                                <li role="presentation"><a href="#tab26" role="tab" class="active"
+                                                           data-toggle="tab">My Request()</a></li>
+                                <li role="presentation"><a href="#tab27" role="tab" data-toggle="tab" class="active">History()</a>
+                                </li>
+
+                            </ul>
+                            <hr style="border-bottom: outset border-color: black;">
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active fade in" id="tab25">
+
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane active fade" id="tab26">
+                                    <p></p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab27">
+                                    <div class="row">
+                                        <div class="col-md-8">
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</div>
+<style>
+    .bg-light {
+    background-color: #393997;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+hr {
+    border-color: #D0D4D9;
+    border-top-color: currentcolor;
+}
+.panel {
+    padding: 25px;
+    border-color: #E6E8EB;
+    background-color: ghostwhite;
+}
+.alert-success {
+    color: #020101;
+    background-color: #4bbb71;
+    border-color: #30B661;
+}
+
+</style>
+{% endblock %}
+{% block extrajs %}
+<script>
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#success-alert").slideUp(500);
+    });
+</script> 
+{% endblock %}
+
+

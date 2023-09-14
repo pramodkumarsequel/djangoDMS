@@ -1,0 +1,166 @@
+{% extends 'account/base.html' %}
+{% block title %}
+<title>::Reports::</title>
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block page-inner %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.jqueryui.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header"></h3>
+    </div>
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        {% for msg in messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {{msg}}
+                            </div>
+                        {% endfor %}
+                        <form method="post" class="form-inline" id="personForm"
+                              data-cities-url="{% url 'ajax_load_fields' %}"
+                              novalidate>
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="form-group col-sm-2 ml-1">
+                                    {{form.Document_Type|as_crispy_field}}
+                                </div>
+                                <div class="form-group col-sm-2 ml-1">
+                                    {% include 'reportsapp/fields_dropdown_list_options.html' %}
+
+                                </div>
+                                <div class="'form-group col-sm-2 ml-1" style="margin-top:1.8rem;">
+                                    {{form.value|as_crispy_field}}
+                                </div>
+                                <div class="form-group col-sm-2 ml-1">
+                                    {{form.Date_Type|as_crispy_field}}
+                                </div>
+                                <div class="form-group col-sm-2 ml-1">
+                                    {{form.From_Date|as_crispy_field}}
+                                </div>
+                                <div class="form-group col-sm-2 ml-1">
+                                    {{form.To_Date|as_crispy_field}}
+                                </div>
+                                <b><a style="float:right; margin:2rem; color:darkgreen; text-decoration: underline;"
+                                      href="{% url 'export_reports_data' %}">Click to download in excel</a></b>
+                                <button type="submit" class="btn btn-primary" style="float:right;">search</button>
+                            </div>   
+                        
+                    </div>
+                    <hr>
+                    <div class="main_responsive">
+                        {% block table %}
+                        {% endblock %}
+                    </div>    
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+  .panel {
+    padding: 25px;
+    border-color: #ccd5e3;
+    border-top-style: inset;
+    border-top-color: aqua;
+    border-top-width: initial;
+}
+.btn-primary {
+    border-color: #0070E0!important;
+    background-color: #0070E0!important;
+    transition: all .2s ease-in-out;
+    border-bottom: groove;
+    border-radius: 20px;
+    width: 10rem;
+    margin-top: 1.5rem;
+    font-size: initial;
+}
+b, strong {
+    font-weight: 700;
+    color: red;
+}
+table.dataTable thead th, table.dataTable tfoot th {
+    font-weight: 500;
+    background-color: #0d47a1;
+    color: white;
+}
+@media screen and (max-width:767px) {
+    table.dataTable thead>tr>td.sorting label {
+        font-size: 12px;
+    }
+
+
+    .main_responsive {
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+    .dataTables_empty{
+        display:none;
+
+    }
+    .panel {
+        padding: 25px;
+        border-color: #ccd5e3;
+        border-top-style: inset;
+        border-top-color: aqua;
+        border-top-width: initial;
+        -webkit-box-shadow: 0px 1px 4px rgb(0 0 0 / 40%);
+    }
+  
+</style>
+{% block extrajs %}
+<script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.jqueryui.min.js"></script>
+<script>
+    $("#id_Document_Type").change(function () {
+      debugger;
+      var url = $("#personForm").attr("data-cities-url");
+      var DocType = $(this).val();
+          console.log(DocType)
+
+      $.ajax({
+        url: url,
+        data: {
+          'fields': DocType
+        },
+        success: function (data) {
+        debugger;
+          $("#id_fields").html(data);
+        }
+      });
+
+    });
+
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function () {
+      $('#example').dataTable();
+  
+    });
+  
+    $(document).ready(function() {
+        $('#id_Document_Type').select2();
+        $('#id_fields').select2();
+        $('#id_Date_Type').select2();
+    });
+  
+  </script>
+
+{% endblock %}
+
+{% endblock %}
+

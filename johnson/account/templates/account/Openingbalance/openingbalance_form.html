@@ -1,0 +1,17 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-3 mb-0">
+        {{form.warehouseCode|as_crispy_field}}
+    </div>  
+    <div class="form-group col-md-3 mb-0">
+        {{form.warehouseName|as_crispy_field}}
+    </div>  
+    <div class="form-group col-md-3 mb-0">
+        {{form.w_order_no|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-3 mb-0">
+        {{form.Date|as_crispy_field}}
+    </div> 
+</div>
+<div class="form-row" style="margin-top:20px;">  
+</div>

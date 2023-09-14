@@ -1,0 +1,152 @@
+{% extends 'account/base.html' %}
+{% block title %}
+<title>::STATE MASTER::</title>
+{% endblock %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block extracss %}
+<script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>
+<script src="{% static 'account/js/create_state.js' %}"></script>
+<link rel="stylesheet" href='http://127.0.0.1:8000/static/account/css/model.css'>
+{% endblock %}
+ {% block page-inner %}
+ <link rel="stylesheet" href="//cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.jqueryui.min.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+ <div class="page-inner">
+    <div class="page-title">
+        <h3 class="breadcrumb-header" style="color:white;">STATE MASTER</h3>
+        <p>
+            <button type="button" class="btn btn-primary state-create" data-url="{% url 'state_create' %}">
+                <span class="glyphicon glyphicon-plus"></span>
+                STATE
+            </button>
+        </p>
+    </div>
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <div class="alert alert-success" role="alert">
+                                <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }}</li>
+                
+                            </div>
+                
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div class="form-row">   
+                            <form method="post" id="disform" data-dis-url="{% url 'ajax_load_disname' %}">
+                                {% csrf_token %} 
+                                <div class="form-row">
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{form.Field_Name|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{form.Value|as_crispy_field}}
+                                    </div>
+                                </div>  
+                                <a href="#">
+                                    <button class="btn btn-primary mx-5" class="btn btn-primary export;"
+                                            style="margin-top: 25px;">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </a>
+                            </form>    
+                                <a href="{% url 'export_state_data' %}">
+                                    <button class="btn btn-primary mx-5" class="btn btn-primary export;"
+                                            style="margin-top: -25px; float:right;">
+                                        <span class="glyphicon glyphicon-export"></span> Excel Export
+                                    </button>
+                                </a>
+
+                      
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        {% block content %}
+                        {% endblock %}
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+</div>
+<style>
+
+    .panel {
+    padding: 25px;
+    border-color: #E6E8EB;
+    background-color: ghostwhite;
+}
+
+
+    .modal-footer, .modal-header {
+    padding: 25px;
+    border: none;
+    /* background-color: black; */
+    background-color: #00695c;
+}
+h3 {
+    background-color: #393997;
+    color: white;
+    padding: 10px;
+    border-bottom-style: groove;
+}
+.form-control {
+    box-shadow: none !important;
+    border-color: #c1c7cd;
+    color: #646464;
+    border-radius: 4px;
+    padding: 5px 12px;
+  }
+  .label,
+  label {
+    font-weight: 400;
+    color: black;
+  }
+  table.dataTable thead th, table.dataTable tfoot th {
+    font-weight: 500;
+    background-color: #0d47a1;
+    color: white;
+}
+</style>
+<script src="{% static 'plugins/jquery/jquery-3.1.0.min.js' %}"></script>
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function () {
+      $('#example').dataTable();
+  
+    });
+  
+  
+  </script>
+  {% block extrajs %}
+  <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.jqueryui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
+<script>   
+  $(document).ready(function (){
+    $('#id_Field_Name').select2();
+  })  
+</script>
+  {% endblock %}
+ {% endblock %}

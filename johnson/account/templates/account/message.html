@@ -1,0 +1,25 @@
+{% if messages %}
+{% if m.tags == "warning" %}
+    <ul class="messages">
+      <li class="warning">
+        <div
+          class="alert alert-warning alert alert-dismissible alert-alt solid fade show"
+        >
+          <div class="media">
+            <div class="media-body">
+              {% for msg in messages %}
+              <p class="mb-0">{{msg}}</p>
+              {% endfor %}
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="btn-close"
+          ></button>
+        </div>
+      </li>
+    </ul>
+{% endif %}
+{% endif %}

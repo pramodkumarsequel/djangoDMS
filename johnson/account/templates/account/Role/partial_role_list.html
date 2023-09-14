@@ -1,0 +1,20 @@
+{% if roles %}
+{% for role in roles %}
+<tr>
+    <td>{{role.name}}</td>
+    <td>
+        <span class="badge badge-primary"><i aria-hidden="true" class="fa fa-users"></i> &nbsp;2</span>
+    </td>
+    <td>
+        <span class="badge badge-success"><i aria-hidden="true" class="fa fa-lock"></i> &nbsp;76</span>
+    </td>
+    <td>
+        <span class="sweetalert">
+            <a class="btn btn-primary shadow btn-xs sharp me-1"data-bs-toggle="tooltip" data-placement="top" href="{% url 'role-update' role.id %}" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+            <a class="btn btn-danger shadow btn-xs sharp sweet-success-cancel" data-bs-toggle="tooltip" data-placement="top" href="{% url 'role-delete' role.id %}" title="Delete"><i class="fa fa-trash"></i></a>
+        </span>
+    </td>
+</tr>
+{% endfor %}
+{% endif %}
+

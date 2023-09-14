@@ -1,0 +1,75 @@
+{% extends 'reportsapp/base1.html' %}
+<!--load static-->
+{% load static %}
+<!--header start-->
+{% block header-left %}
+<div class="header-left">
+  <div class="dashboard_bar">Dynamic Number Generation</div>
+</div>
+{% endblock header-left %}
+<!--header end-->
+
+<!--content-body start-->
+{% block content-body %}
+<div class="content-body" style="min-height: 728px">
+    <div class="container-fluid">
+        {% if messages %}
+        <ul class="messages">
+            <li class="success">
+               <div class="alert alert-success alert alert-dismissible alert-alt solid fade show">
+                    <div class="media">
+                        <div class="media-body">
+                            {% for msg in messages %}
+                            <p class="mb-0">{{msg}}</p> 
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="btn-close"
+                    ></button>
+                </div>
+            </li>
+          </ul>
+        {% endif %}
+        <div id="message"></div>
+        <!--filter-->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">GENERATE CODE WITH COMBINATION</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="" id='mfield' data-modelfield-url="{% url 'get_model_fields' %}"  data-field-url="{% url 'get_fields' %}">{% csrf_token %}
+                           {% include 'account/Order/order_form.html' %}
+
+                        <button type="submit" class="btn btn-secondary mt-4 mb-5">Save</button>
+                        <a href="#" class="btn btn-primary mt-4 mb-5">Cancel</a> 
+                        </form> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Transaction</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            {% block content %} 
+                               {% include 'account/Order/order_datatable_header.html' %}
+                            {% endblock %}
+                        </div>    
+                    </div>
+                </div>
+            </div>
+    </div>    
+</div>    
+{% endblock content-body %}
+{% block vendorjs %}
+<script src="{% static 'reportsapp/dashboard/vendor/dropdown/radio_button.js' %}"></script>
+<script src="{% static 'reportsapp/dashboard/vendor/dropdown/model_field.js' %}"></script>  
+{% endblock vendorjs %}
+<!--content-body end-->

@@ -1,0 +1,27 @@
+{% extends 'account/hierarchy3base.html' %}
+{% load static %}
+{% block content %}
+<table id="example" class="display" style="width:100%">
+   <thead>
+      <tr>
+         <th>S.NO</th>
+          <th>Hierarchy 1</th>
+        <th>Hierarchy 2</th>
+        <th>Name</th>
+        <th>Active/InActive</th>
+        <th>Edit/Delete</th>
+      </tr>
+
+   </thead>
+    {% include 'account/partial_hierarchy3_list.html' %}
+
+ </table>
+
+<div class="modal fade" id="modal-book">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      </div>
+    </div>
+</div>
+
+{% endblock %}

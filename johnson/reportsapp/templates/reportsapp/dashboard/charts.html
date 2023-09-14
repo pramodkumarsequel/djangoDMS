@@ -1,0 +1,63 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header" style="background-color: #271889; -1px 1px 1px 0px;">
+            <h4 class="card-title">Data visualization</h4>                
+        </div>
+        <div class="card-body"> 
+            <div id="chartContainer1" style="height: 400px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+{% load static %}
+<script>
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer1", {
+          animationEnabled: true,
+          title:{
+            text:"Production of Two Wheelers (India)"
+          },
+          axisY: {
+            title: "Production Count (in Millions)",
+            valueFormatString: "0,.,.##M"
+          },
+          axisX: {
+            reversed: true
+          },
+          toolTip: {
+            shared: true
+          },
+          legend: {
+            verticalAlign: "top",
+            cursor: "pointer",
+            itemclick: toggleDataSeries
+          },
+          data: [{
+            type: "stackedBar",
+            name: "Scooter",
+            showInLegend: true,
+            dataPoints: {{ data_points|safe }}
+          },{
+            type: "stackedBar",
+            name: "Motorcycles",
+            showInLegend: true,
+            dataPoints: {{ data_points|safe }}
+          },{
+            type: "stackedBar",
+            name: "Mopeds",
+            showInLegend: true,
+            dataPoints: {{ data_points|safe }}
+          }]
+        });
+        chart.render();
+ 
+        function toggleDataSeries(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            } else {
+                e.dataSeries.visible = true;
+            }
+            e.chart.render();
+        }
+ 
+    }
+</script>               

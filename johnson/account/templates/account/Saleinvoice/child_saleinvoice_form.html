@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %} {{ formset.management_form }}
+ {% for form in formset %}
+<tr class="form-row">
+
+  <td>{{form.Item_Code|as_crispy_field}}</td>
+  <td>{{form.Item_Name|as_crispy_field}}</td>
+  <td>{{form.Quantity|as_crispy_field}}</td>
+  <td>{{form.bal_qty|as_crispy_field}}</td>
+  <td>{{form.uom|as_crispy_field}}</td>
+  <td>{{form.Rate|as_crispy_field}}</td>
+  <td>{{form.Discount|as_crispy_field}}</td>
+  <td>{{form.Serial_No|as_crispy_field}}</td>
+  <td>{{form.Amount|as_crispy_field}}</td>
+
+  <td>
+    <div class="input-group-append">
+      <button class="button btn-success is-small add-form-row">
+        <i class="bi bi-plus"></i></button
+      >&nbsp;
+      <button class="button btn-danger is-small remove-form-row">
+        <i class="bi bi-trash"></i></button
+      >&nbsp;
+    </div>
+  </td>
+</tr>
+{% endfor %}

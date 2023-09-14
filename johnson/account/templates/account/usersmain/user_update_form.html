@@ -1,0 +1,76 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="mb-3 col-md-6">
+       <div class="avatar-upload">
+           <div class="avatar-edit">
+               <input accept="image/*" id="id_avatar" name="avatar" type="file"/>
+               <label for="id_avatar"><i class="fas fa-pencil-alt"></i></label>
+           </div>
+           <div class="avatar-preview">
+               <div
+                       id="imagePreview" style="background-image: url('/media/images/profile.jpg');">
+               </div>
+           </div>
+       </div>
+       <div class="text-danger w-100 d-block mt-1"></div>
+    </div>
+
+      <div class="row col-md-6">
+          <div class="mb-3 col-md-6">
+             {{form.first_name|as_crispy_field}}
+          </div>
+          <div class="mb-3 col-md-6">
+             {{form.last_name|as_crispy_field}}
+          </div>     
+          <div class="form-group col-md-6 mb-0">
+             {{form.userid|as_crispy_field}}
+          </div>   
+          <div class="form-group col-md-6 mb-0">
+             {{form.username|as_crispy_field}}
+          </div>
+          <div class="form-group col-md-6 mb-0">
+             {{form.email|as_crispy_field}}
+          </div>
+          <div class="form-group col-md-6 mb-0">
+             {{form.role|as_crispy_field}}
+          </div>     
+       </div>  
+    </div>  
+ </div>
+ <div class="row">
+    <div class="col-md-6 col-md-6 m-auto">
+       {{form.is_active|as_crispy_field}}
+    </div>
+    <div class="mb-3 col-md-6 custom-user">
+       <label class="form-label"> Additional Role </label>
+       <select class="multi-select form-control" id="id_groups" multiple name="groups[]" name="groups">
+         <option value="{{form.instance.Arole}}" selected>{{form.instance.Arole}}</option>
+          {% for role in roles %}
+          <option value="{{role.name}}">{{role.name}}</option>
+          {% endfor %}
+       </select>
+       <div class="text-danger w-100 d-block mt-1"></div>
+    </div>
+    <div class="col-md-6 col-md-6 m-auto">
+      <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+      <input class="form-control" id="id_phone_number" name="phone" placeholder="Phone Number" required type="text" value="{{form.instance.Phone}}"/>
+      <div class="text-danger w-100 d-block mt-1"></div>
+   </div>
+
+      <div class="mb-3 col-md-6">
+       <label class="form-label">Password <span class="text-danger">*</span></label>
+       <div class="input-group transparent-append">
+           <input class="form-control" id="dz-password" name="password1" placeholder="Password" required type="password" value="{{form.instance.password}}"/>
+           <span class="input-group-text show-pass"><i class="fa fa-eye-slash"></i><i class="fa fa-eye"></i></span>
+           <div class="text-danger w-100 d-block mt-1"></div>
+       </div>
+      </div>
+      <div class="mb-3 col-md-6">
+       <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+       <div class="input-group transparent-append">
+          <input class="form-control" id="dz-con-password" name="password2" placeholder="Confirm Password" required type="password" value="{{form.instance.password}}"/>
+          <span class="input-group-text show-con-pass"><i class="fa fa-eye-slash"></i><i class="fa fa-eye"></i></span>
+          <div class="text-danger w-100 d-block mt-1"></div>
+       </div>
+      </div>
+ </div>

@@ -1,0 +1,5 @@
+<select name="sale_uom" class="select form-control" id="id_sale_uom">
+    {% for u in un %}
+    <option value="{{u.id}}">{{u.unit_name}}</option>
+    {% endfor %}
+  </select>

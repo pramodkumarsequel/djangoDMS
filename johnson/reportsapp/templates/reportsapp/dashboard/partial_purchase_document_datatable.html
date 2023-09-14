@@ -1,0 +1,34 @@
+{% extends 'reportsapp/dashboard/dashboardbase.html' %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+    <tr>
+    {% for fld in fields %}
+        <th>{{fld }}</th>
+    {% endfor %}    
+    </tr>
+    </thead>
+    {% for sale in sales %}
+       {% for r in sale.detailofpurchase_set.all %}
+     <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{sale.Distributors.Distributor_Name|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Bill_Date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.SAP_Order_No|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_Inventory_Amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_GST|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.SGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.CGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.IGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Vendor_Name|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Total_Invoice_Amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.total_discount_amount|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.updated_on}}</td>
+        <td>{{sale.created_on}}</td>
+
+
+     </tr>
+        {% endfor %}
+     {% endfor %}
+</table>
+{% endblock %}    

@@ -1,0 +1,28 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% load crispy_forms_tags %}
+<div class="row">
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+      {{form.zone|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{form.region|as_crispy_field}}
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.State|as_crispy_field}}
+    </div>  
+    <div class="form-group col-md-6 mb-0">
+        {{form.City_Name|as_crispy_field}}
+    </div>  
+  </div>  
+</div>   
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>    
+<script>
+  $(document).ready(function() {
+      $('#id_zone').select2();
+      $('#id_region').select2();
+      $('#id_State').select2();
+  });
+</script>

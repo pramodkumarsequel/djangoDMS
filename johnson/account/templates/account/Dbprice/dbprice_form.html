@@ -1,0 +1,12 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.distributor|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+        {{form.item|as_crispy_field}}
+    </div>   
+    <div class="form-group col-md-6 mb-0">
+        {{form.Rate|as_crispy_field}}
+    </div> 
+</div>

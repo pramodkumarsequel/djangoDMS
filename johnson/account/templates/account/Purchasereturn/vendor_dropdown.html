@@ -1,0 +1,6 @@
+<select name="billing_entity" class="select form-control" required="" id="id_billing_entity">
+    <option value="" selected="">---------</option>
+    {% for vendor in obj %}
+    <option value="{{vendor.Vendor_Name}}">{{vendor.Vendor_Name}}</option>
+    {% endfor %}
+  </select>

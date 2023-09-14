@@ -1,0 +1,34 @@
+{% if hierarchys2 %}
+{% for hierarchy2 in hierarchys2 %}
+  <tr id="3">
+      <td>
+        <div class="form-check custom-checkbox checkbox-primary check-lg me-3">
+          <input name="user_id[]" type="checkbox" class="form-check-input" value="3">
+          <label class="form-check-label" for="checkbox-3"></label>
+        </div>
+      </td>
+    <td>{{forloop.counter}}</td>
+    <td>{{hierarchy2.hierarchy1.Name}}</td>
+    <td>{{hierarchy2.Name}}</td>
+    <td>
+      <div class="form-check form-switch">
+        <input class="form-check-input" data-item-id="{{ hierarchy2.id }}" type="checkbox" value="{{hierarchy2.is_active}}" role="switch" id="flexSwitchCheckDefault" {% if hierarchy2.isactive %}checked{% endif %}>
+        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+      </div>
+    </td> 
+    <td>
+        <div class="sweetalert">
+          <div class="d-flex">
+            <a href="#" class="btn btn-secondary shadow btn-xs sharp me-1" title="Permissions"><i class="fa fa-shield"></i></a>  
+            <a href="{% url 'hierarchy2-update' hierarchy2.id %}" class="btn btn-primary shadow btn-xs sharp me-1" title="Edit"><i class="fa fa-pencil"></i></a>
+            <a href="{% url 'hierarchy2-delete' hierarchy2.id %}" class="btn btn-danger shadow btn-xs sharp sweet-success-cancel"  title="Delete"><i class="fa fa-trash"></i></a>    
+          </div>  
+        </div>  
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="10" class="text-center bg-warning">No Hierarchy2</td>
+  </tr>
+{% endfor %}
+{% endif %}

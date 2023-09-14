@@ -1,0 +1,71 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Item_Code|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{ form.Item_Name|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+       {{ form.Batch_Enabled|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{ form.base_uom|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{ form.sale_uom|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{ form.purchase_uom|as_crispy_field }}
+    </div>
+</div> 
+<div class="row">
+    <div class="form-group col-md-3 mb-0">
+        {{ form.Principal_Company|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{ form.MRP|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{ form.purchase_price|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-3 mb-0">
+        {{ form.sale_price|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.HSN_Code|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.GST_Applicable_From|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+       {{form.TaxRate|as_crispy_field }}
+   </div>
+   <div class="form-group col-md-6 mb-0">
+        {{form.Hierarchy1|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.Hierarchy2|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.Hierarchy3|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.Hier4|as_crispy_field }}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        {{form.Hier5|as_crispy_field }}
+    </div>
+</div>

@@ -1,0 +1,29 @@
+
+    .panel {
+    padding: 25px;
+    border-color: #E6E8EB;
+    background-color: ghostwhite;
+}
+.breadcrumb-header {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(0,0,0,.6);
+    margin-bottom: 24px;
+    background-color: #0d47a1;
+    color: white;
+    padding: 1rem;
+    font-weight: revert;
+}
+.btn {
+    border-radius: 4px;
+    padding: 10px 20px;
+    box-shadow: none!important;
+    margin: 0px;
+}
+
+    .modal-footer, .modal-header {
+    padding: 25px;
+    border: none;
+    /* background-color: black; */
+    background-color: #00695c;
+}

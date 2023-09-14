@@ -1,0 +1,26 @@
+
+    .swal2-popup .swal2-title {
+        display: block;
+        position: relative;
+        max-width: 90%;
+        margin: 0 0 0.4px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0.4px;
+        margin-left: 0px;
+        padding: 0;
+        color: #e41313;
+        font-size: larger;
+        font-weight: revert;
+        text-align: center;
+        text-transform: none;
+        word-wrap: break-word;
+    }
+    .swal2-popup .swal2-styled.swal2-confirm {
+        border: 0;
+        border-radius: 0.25em;
+        background: initial;
+        background-color: #ff4646;
+        color: #fff;
+        font-size: 1.0625em;
+    }

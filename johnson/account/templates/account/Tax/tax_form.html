@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+        {{form.Tax_Type|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+        {{form.name|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+        {{form.CGST|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+        {{form.SGST|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+        {{form.value|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mt-4">
+        {{form.taxinputrecoverable|as_crispy_field}}
+    </div>  
+</div>  

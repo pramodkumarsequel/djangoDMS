@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="form-group col-md-6 mb-0">
+      {{form.UNT|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{form.unit_notation|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{form.unit_name|as_crispy_field}}
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+      {{form.conversion_factor|as_crispy_field}}
+    </div>   
+    <div class="form-group col-md-6 mb-0">
+      {{form.status|as_crispy_field}}
+    </div>
+    <div class="form-group col-md-6 mb-0">
+      {{form.base_unit|as_crispy_field}}
+    </div>        
+</div>   

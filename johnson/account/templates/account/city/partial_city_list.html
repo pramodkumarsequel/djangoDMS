@@ -1,0 +1,29 @@
+{% if citys %}
+<tr>
+          {% for city in citys %}
+          <td>{{forloop.counter}}</td>
+          <td>{{city.zone}}</td>
+          <td>{{city.region.Region_Name}}</td>
+          <td>{{city.State.State_Name}}</td>
+          <td>{{city.City_Name}}</td>
+          <td>
+            <button type="button"
+                    class="btn btn-primary btn-sm city-update"
+                    data-url="{% url 'city_update' city.id %}">
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+          <button type="button"
+              class="btn btn-danger btn-sm js-delete-city"
+              data-url="{% url 'city_delete' city.id %}">
+              <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </td>
+      </tr>
+   
+    {% empty %}
+
+      <tr>
+        <td colspan="7" class="text-center bg-warning">No Data</td>
+      </tr>
+    {% endfor %}
+{% endif %}

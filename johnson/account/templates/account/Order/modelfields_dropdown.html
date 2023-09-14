@@ -1,0 +1,15 @@
+<div id="field_level">
+<div id="div_id_field" class="form-group">
+    <label for="id_field" class=>Field For Prefix</label>
+</div>
+<select name="field" class="select form-control" id="id_field">
+    <option value="">--------SELECT--------</option>
+    {% for field in fields %}
+  <option value="{{field.id}}">{{field}}</option>
+    {% endfor %}
+
+</select>
+</div>
+
+
+

@@ -1,0 +1,4 @@
+<option value="">----SELECT-----</option>
+{% for gst in gsts %}
+<option value="{{gst.gst_type.id}}">{{gst.gst_type.name}}</option>
+{% endfor %}

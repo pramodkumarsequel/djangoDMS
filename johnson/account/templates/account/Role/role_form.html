@@ -1,0 +1,11 @@
+<div class="mb-3 col-md-12">
+    <label class="form-label">Name</label>
+    <input type="text" name="name" maxlength="150" placeholder="Name" class="form-control" required="" id="id_name" unique="">
+ </div>
+<div class="mb-3 col-md-12">
+    <select name="permissions" style="height: 300px" id="id_permissions" multiple>
+      {% for con in allperm %}
+      <option value="{{con.id}}">{{con}}</option>
+      {% endfor %}
+    </select>
+</div>

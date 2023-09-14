@@ -1,0 +1,60 @@
+{% extends 'reportsapp/Report/reportbase.html' %}
+{% load custom_filters %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+   <thead style="background-color:beige;">
+     <tr>
+        <th>S.No</th>
+       {% for field in fields %}
+         <th>{{field.verbose_name}}</th>
+       {% endfor %}
+     </tr>
+   </thead>
+   <tbody>
+    {% for sale in queryset %}
+      {% for r in sale.purchaseinvoicelineitem_set.all %}
+
+    <tr>
+      <td>{{forloop.counter|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.id}}</td>
+      <td>{{sale.Distributors.Distributor_Name|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.Bill_Date|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.purchase_invoice_no|default_if_none:"&nbsp;"}}</td>
+      <td>{{sale.purchase_invoice_date|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.Supplier_Invoice_No|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.SAP_Order_Date|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.mrn_date|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.Total_Inventory_Amount|default_if_none:"&nbsp;"}}</td>
+      <td>{{sale.Total_GST|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.SGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.CGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.IGST_AMOUNT|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.Vendor_Name|default_if_none:"&nbsp;"}}</td>
+      <td>{{sale.PO_No|default_if_none:"&nbsp;"}}</td>
+      <td>{{sale.total_discount_amount|default_if_none:"&nbsp;" }}</td>
+      <td>{{sale.Total_Invoice_Amount|default_if_none:"&nbsp;" }}</td>
+
+      
+             
+      <td>{{r.id}}</td>
+      <td>{{r.parent_id}}</td>
+      <td>{{r.item_name|default_if_none:"&nbsp;"}}</td>
+      <td>{{r.Quantity|default_if_none:"&nbsp;"}}</td>
+      <td>{{r.bal_qty|default_if_none:"&nbsp;"}}</td>
+      <td>{{r.UOM |default_if_none:"&nbsp;"}}</td>
+      <td>{{r.Rate |default_if_none:"&nbsp;"}}</td>
+      <td>{{r.Discount |default_if_none:"&nbsp;"}}</td>
+      <td>{{r.Serial_No |default_if_none:"&nbsp;"}}</td>
+      <td>{{r.Total_Amount |default_if_none:"&nbsp;"}}</td>
+      <td>{{sale.updated_on}}</td>
+      <td>{{sale.created_on}}</td>
+             
+           
+       
+     
+    </tr>
+       {% endfor %}
+    {% endfor %}
+   </tbody>
+ </table> 
+{% endblock %}

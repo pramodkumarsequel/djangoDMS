@@ -1,0 +1,41 @@
+{% load crispy_forms_tags %} 
+{{ formset.management_form }} 
+{% for form in formset %}
+<tr class="form-row">
+  {% comment %}
+  <td>{{form.Sales_Item_Code|as_crispy_field}}</td>
+  {% endcomment %}
+  <td>
+    <div id="div_id_form-0-Sales_Item_Code" class="form-group">
+      <div>
+        <select
+          name="form-0-Sales_Item_Code"
+          class="Item_Code select form-control"
+          readonly="readonly"
+          id="id_form-0-Sales_Item_Code">
+          <option value="" selected="">---------</option>
+          {% for n in items %}
+            <option value="{{n.id}}">{{n.Item_Code}}</option>
+           {% endfor %}
+        </select>
+      </div>
+    </div>
+  </td>
+  <td>{{form.Sales_Item_Name|as_crispy_field}}</td>
+  <td>{{form.Sales_Quantity|as_crispy_field}}</td>
+  <td>{{form.sale_uom|as_crispy_field}}</td>
+  <td>{{form.Sales_Rate|as_crispy_field}}</td>
+  <td>{{form.Sales_Discount|as_crispy_field}}</td>
+  <td>{{form.Total_Amount|as_crispy_field}}</td>
+  <td>
+    <div class="input-group-append">
+      <button class="button btn-success is-small add-form-row">
+        <i class="bi bi-plus"></i></button
+      >&nbsp;
+      <button class="button btn-danger is-small remove-form-row">
+        <i class="bi bi-trash"></i></button
+      >&nbsp;
+    </div>
+  </td>
+</tr>
+{% endfor %}

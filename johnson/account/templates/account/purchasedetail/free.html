@@ -1,0 +1,87 @@
+<div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+        <div id="div_id_zone" class="form-group">
+            <label for="id_zone" class=""> Zone </label>
+          
+            <div>
+              <select name="zone" class="select form-control" id="zone" onchange="countryfield()">
+                <option value="" selected="">---------</option>
+                  {% for i in zone %}
+                      <option value="{{i.id}}" {% if request.GET.zone == i.id|lower %}selected{% endif %}>{{i.name}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+          </div>
+    </div>
+    <div class="form-group col-md-6 mb-0">
+        <div id="div_id_Region" class="form-group">
+            <label for="id_Region" class="requiredField">
+              Region<span class="asteriskField">*</span>
+            </label>
+          
+            <div>
+              <select
+                name="Region"
+                class="select form-control"
+                required=""
+                id="region" onchange="statefield()">
+                <option value="" selected="">---------</option>
+          
+                  {% for i in region %}
+                      <option value="{{i.id}}" {% if request.GET.region == i.id|lower %}selected{% endif %}>{{i.Region_Name}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+          </div>
+    </div>    
+</div>   
+
+<div class="form-row">
+    <div class="form-group col-md-6 mb-0">
+        <div id="div_id_State" class="form-group">
+            <label for="id_State" class=""> State </label>
+          
+            <div>
+              <select name="State" class="select form-control" id="state" onchange="cityfield()">
+                <option value="" selected="">---------</option>
+          
+                {% for i in state %}
+                      <option value="{{i.id}}" {% if request.GET.state == i.id|lower %}selected{% endif %}>{{i.State_Name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+    </div> 
+    <div class="form-group col-md-6 mb-0">
+        <div id="div_id_City" class="form-group">
+            <label for="id_City" class=""> City </label>
+          
+            <div>
+              <select name="City" class="select form-control" id="city">
+                <option value="" selected="">---------</option>
+                {% for i in city %}
+                  <option value="{{i.id}}" {% if request.GET.city == i.id|lower %}selected{% endif %}>{{i.City_Name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+    </div>       
+</div>    
+
+<script>
+    function countryfield(){
+        zoneid = document.getElementById('zone').value;
+        window.location = "http://127.0.0.1:8000/distributors/load_zone/search/?zone="+zoneid;
+    }
+    function statefield(){
+       regionid = document.getElementById('region').value;
+       window.location = "http://127.0.0.1:8000/distributors/load_zone/search/?zone="+'{{request.GET.zone}}'+"&region="+regionid;
+    }
+    function cityfield(){
+      stateid = document.getElementById('state').value;
+      window.location = "http://127.0.0.1:8000/distributors//load_zone/search/?zone="+'{{request.GET.zone}}'+"&region="+'{{request.GET.region}}'+"&state="+stateid;
+
+
+   }
+</script>
+

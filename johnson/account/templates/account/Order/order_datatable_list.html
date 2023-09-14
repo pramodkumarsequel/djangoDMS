@@ -1,0 +1,31 @@
+{% if orderGens %}
+{% for order in orderGens %}
+  <tr id="3">
+      <td>
+        <div class="form-check custom-checkbox checkbox-primary check-lg me-3">
+          <input name="user_id[]" type="checkbox" class="form-check-input" value="3">
+          <label class="form-check-label" for="checkbox-3"></label>
+        </div>
+      </td>
+    <td>{{forloop.counter}}</td>
+    <td>{{order.documentType}}</td>
+    <td>{{order.prfx}}</td>
+    <td>{{order.sufx}}</td>
+    <td>{{order.seprator_choice}}</td>
+    <td>{{order.seqnum}}</td>
+    <td>{{order.order_combination}}</td>
+    <td>
+        <div class="sweetalert">
+          <div class="d-flex"> 
+            <a href="{% url 'orderno-update' order.id %}" class="btn btn-primary change-data shadow btn-xs sharp me-1" title="Edit"><i class="fa fa-pencil"></i></a>
+            <a href="#" class="btn btn-danger shadow btn-xs sharp sweet-success-cancel"  title="Delete"><i class="fa fa-unlock"></i></a>    
+          </div>  
+        </div>  
+    </td>
+ </tr>
+{% empty %}
+  <tr>
+    <td colspan="10" class="text-center bg-warning">No Data</td>
+  </tr>
+{% endfor %}
+{% endif %}

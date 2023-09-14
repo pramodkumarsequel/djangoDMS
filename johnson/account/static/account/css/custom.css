@@ -1,0 +1,50 @@
+            .page-header {
+        background-color: ghostwhite;
+        padding-bottom: 0;
+        margin: 0;
+        border-bottom: none;
+        height: 81px;
+        position: relative;
+        padding-top: 25px;
+        padding-right: 25px;
+        margin-left: 2px;
+    }
+
+    .page-header .navbar-default .container-fluid, .page-header .navbar-default .navbar-collapse {
+    height: 56px !important;
+    background-color: black;
+}
+.fa-navicon:before, .fa-reorder:before, .fa-bars:before {
+    content: "\f0c9";
+    color: white;
+
+}
+.fa-expand:before {
+    content: "\f065";
+    color: whitesmoke;
+}
+.fa-search:before {
+    content: "\f002";
+    color: whitesmoke;
+}
+.fa-envelope:before {
+    content: "\f0e0";
+    color: whitesmoke;
+}
+.fa-bell:before {
+    content: "\f0f3";
+    color: whitesmoke;
+}
+.page-inner {
+    position: relative;
+    min-height: calc(100% - 81px);
+    padding: 5px 40px 42px 30px;
+    background: #fff;
+    background-color: ghostwhite;
+    margin-left: 2px;
+}
+.panel1 {
+    padding: 25px;
+    border-color: #E6E8EB;
+
+}

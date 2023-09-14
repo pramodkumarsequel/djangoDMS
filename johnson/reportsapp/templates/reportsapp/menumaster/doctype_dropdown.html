@@ -1,0 +1,15 @@
+<div id="div_id_doc_type" class="form-group">
+    <label for="id_doc_type" class="requiredField">
+      DOCUMENT TYPE<span class="asteriskField">*</span>
+    </label>
+    <div>
+      <select name="doc_type" class="select form-control" id="id_doc_type"
+        ONCHANGE="location = this.options[this.selectedIndex].value;">
+        
+        <option value="New">New</option>
+  
+        <option value="{% url reportsapp:roleassignment_update roleassign.pk %}">{{docs}}</option>
+       
+      </select>
+    </div>
+  </div>

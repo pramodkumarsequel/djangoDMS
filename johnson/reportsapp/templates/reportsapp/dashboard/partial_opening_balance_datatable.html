@@ -1,0 +1,26 @@
+{% extends 'reportsapp/dashboard/dashboardbase.html' %}
+{% block content %}
+<table class="table table-responsive-md table-bordered header-border table-striped" id="example4">
+    <thead style="background-color:beige;">
+    <tr>
+    {% for fld in fields %}
+        <th>{{fld }}</th>
+    {% endfor %}    
+    </tr>
+    </thead>
+    {% for sale in sales %}
+       {% for r in sale.warehouseitemchild_set.all %}
+     <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{sale.warehouseName|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.w_order_no|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.itemName|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.Date|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.updated_on|default_if_none:"&nbsp;" }}</td>
+        <td>{{sale.created_on|default_if_none:"&nbsp;" }}</td>
+
+     </tr>
+        {% endfor %}
+     {% endfor %}
+</table>
+{% endblock %}    
